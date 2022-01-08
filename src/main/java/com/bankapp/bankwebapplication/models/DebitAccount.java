@@ -12,7 +12,7 @@ public class DebitAccount implements Account {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-//     remove id setter
+//    remove id setter
 //    private transient Client clientId;
     @ManyToOne
     @JoinColumn(name = "pcid")
