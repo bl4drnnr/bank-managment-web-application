@@ -12,8 +12,6 @@ public class DebitAccount implements Account {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-//    remove id setter
-//    private transient Client clientId;
     @ManyToOne
     @JoinColumn(name = "pcid")
     private PersonClient personClient;
@@ -25,9 +23,6 @@ public class DebitAccount implements Account {
     private CompanyClient companyClient;
 
     public Long getCompanyClientId() { return companyClient.getId(); }
-
-//    public Long getClientId() { return clientId.getId(); }
-//    public void setClientId(Client clientId) { this.clientId = clientId; }
 
     private Long amountOfMoney;
     public Long getAmountOfMoney() { return amountOfMoney; }
