@@ -12,9 +12,6 @@ public class DebitAccount implements Account {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    // Интерфейс тут кажется должен быть transient чтобы создать его.
-    // Надо будет это простестировать.
-    // Возможно некоторые общие методы можно будет просто вынести в интерфейс.
 //     remove id setter
 //    private transient Client clientId;
     @ManyToOne
