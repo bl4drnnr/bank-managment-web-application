@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex justify-content-center py-3"></header>
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Welcome to bank management app</span>
+        </a>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/clients" class="nav-link">Clients</a></li>
+                <li class="nav-item"><a href="/accounts" class="nav-link">Accounts</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div style="display: flex">
+
+        <div style="width: 50%; margin-right: 50px">
+
+            <h4>Create client:</h4>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect02">Choose the type of client</label>
+                <select class="form-select" id="inputGroupSelect02" onchange="getTypeOfClient()">
+                    <option value="0" selected>Choose...</option>
+                    <option value="1">Person</option>
+                    <option value="2">Company</option>
+                </select>
+            </div>
+
+            <div id="person" style="display: none">
+                <form action="/person" method="post">
+                    <div class="input-group">
+                        <span class="input-group-text">First and last name</span>
+                        <input required name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First name">
+                        <input required name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last name">
+                    </div>
+                    <div class="input-group mb-3" style="padding-top: 15px;">
+                        <input required name="pesel" type="text" class="form-control" placeholder="PESEL" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="address" type="text" class="form-control" placeholder="Address" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input name="workPhone" type="text" class="form-control" placeholder="Work phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default" style="margin-right: 10px">
+                        <input name="homePhone" type="text" class="form-control" placeholder="Home phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <button type="submit" class="btn btn-success">Create client</button>
+                </form>
+            </div>
+            <div id="company" style="display: none">
+                <form action="/company" method="post">
+                    <div class="input-group mb-3">
+                        <input required name="nip" type="text" class="form-control" placeholder="NIP" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="companyName" type="text" class="form-control" placeholder="Company name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="companyAddress" type="text" class="form-control" placeholder="Company address" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="companyPhone" type="text" class="form-control" placeholder="Company phone" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <button type="submit" class="btn btn-success">Create client</button>
+                </form>
+            </div>
+        </div>
+
+        <div style="width: 50%;">
+            <h4>Create account:</h4>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Choose the type of account</label>
+                <select class="form-select" id="inputGroupSelect01" onchange="getTypeOfAccount()">
+                    <option value="0" selected>Choose...</option>
+                    <option value="1">Credit</option>
+                    <option value="2">Debit</option>
+                </select>
+            </div>
+
+            <div style="display: none" id="credit1">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect03">Choose the type of client</label>
+                    <select class="form-select" id="inputGroupSelect03" onchange="getTypeOfClientCredit()">
+                        <option value="0" selected>Choose...</option>
+                        <option value="1">Person</option>
+                        <option value="2">Company</option>
+                    </select>
+                </div>
+
+                <div style="display: none;" id="person1">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Provide personal client ID for credit</span>
+                        <input required name="personalIdCredit" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="personalCreditAmount" id="personalCreditAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="mb-3">
+                        <label for="start">Date of expire:</label>
+                        <input type="date" id="start" name="trip-start" class="form-control"
+                               value="2018-07-22"
+                               min="2018-01-01" max="2018-12-31">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Create credit account</button>
+                </div>
+                <div style="display: none;" id="company1">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Provide company ID for credit</span>
+                        <input required name="companyIdCredit" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="companyCreditAmount" id="companyCreditAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="mb-3">
+                        <label for="start1">Date of expire:</label>
+                        <input type="date" id="start1" name="trip-start" class="form-control"
+                               value="2018-07-22"
+                               min="2018-01-01" max="2099-12-31">
+                    </div>
+                    <button type="submit" class="btn btn-success">Create credit account</button>
+                </div>
+
+            </div>
+
+            <div style="display: none" id="debit1">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect04">Choose the type of client</label>
+                    <select class="form-select" id="inputGroupSelect04" onchange="getTypeOfClientDebit()">
+                        <option value="0" selected>Choose...</option>
+                        <option value="1">Person</option>
+                        <option value="2">Company</option>
+                    </select>
+                </div>
+
+                <div style="display: none;" id="person2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Provide personal client ID for debit</span>
+                        <input required name="personalIdDebit" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="personalDebitAmount" id="personalDebitAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <button type="submit" class="btn btn-success">Create debit account</button>
+                </div>
+                <div style="display: none;" id="company2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Provide company ID for debit</span>
+                        <input required name="companyIdDebit" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required name="companyDebitAmount" id="companyDebitAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <button type="submit" class="btn btn-success">Create debit account</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <hr>
+    <div style="display: flex">
+        <div style="width: 50%; margin-right: 50px">
+            <h4>Recently created personal clients:</h4>
+            <div th:each="client: ${allPersonalClients}">
+                <span><b>ID: </b></span>
+                <span class="fs-6" th:text="${client.getId}"></span>
+                <span><b>Name: </b></span>
+                <span class="fs-6" th:text="${client.firstName}"></span>
+                <span class="fs-6" th:text="${client.lastName}"></span>
+                <span><b>PESEL: </b></span>
+                <span class="fs-6" th:text="${client.getPesel}"></span>
+                <span><b>Address: </b></span>
+                <span class="fs-6" th:text="${client.getAddress}"></span>
+                <span th:if="${client.getWorkPhone != null and client.getWorkPhone != ''}">
+                    <span><b>Work phone: </b></span>
+                    <span class="fs-6" th:text="${client.getWorkPhone}"></span>
+                </span>
+                <span th:if="${client.getHomePhone != null and client.getHomePhone != ''}">
+                    <span><b>Home phone: </b></span>
+                    <span class="fs-6" th:text="${client.getHomePhone}"></span>
+                </span>
+                <hr>
+            </div>
+        </div>
+        <div style="width: 50%">
+            <h4>Recently created companies:</h4>
+            <div th:each="company: ${allCompanies}">
+                <span><b>ID: </b></span>
+                <span class="fs-6" th:text="${company.getId}"></span>
+                <span><b>NIP: </b></span>
+                <span class="fs-6" th:text="${company.getNip}"></span>
+                <span><b>Name: </b></span>
+                <span class="fs-6" th:text="${company.getCompanyName}"></span>
+                <span><b>Company address: </b></span>
+                <span class="fs-6" th:text="${company.getCompanyAddress}"></span>
+                <span><b>Company phone: </b></span>
+                <span class="fs-6" th:text="${company.getCompanyPhone}"></span>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4>Recently created account:</h4>
+    </div>
+
+    <script>
+        function getTypeOfClient() {
+            const select = document.getElementById('inputGroupSelect02');
+            const value = select.options[select.selectedIndex].value;
+            if (value === '1') {
+                document.getElementById('person').style.display = "block";
+                document.getElementById('company').style.display = "none";
+            } else if (value === '2') {
+                document.getElementById('company').style.display = "block"
+                document.getElementById('person').style.display = "none";
+            } else {
+                document.getElementById('person').style.display = "none";
+                document.getElementById('company').style.display = "none";
+            }
+        }
+        function getTypeOfAccount() {
+            const select = document.getElementById('inputGroupSelect01');
+            const value = select.options[select.selectedIndex].value;
+            if (value === '1') {
+                document.getElementById('credit1').style.display = "block";
+                document.getElementById('debit1').style.display = "none";
+            } else if (value === '2') {
+                document.getElementById('debit1').style.display = "block";
+                document.getElementById('credit1').style.display = "none";
+            } else {
+                document.getElementById('debit1').style.display = "none";
+                document.getElementById('credit1').style.display = "none";
+            }
+        }
+        function getTypeOfClientCredit() {
+            const select = document.getElementById('inputGroupSelect03');
+            const value = select.options[select.selectedIndex].value;
+            if (value === '1') {
+                document.getElementById('person1').style.display = "block";
+                document.getElementById('company1').style.display = "none";
+            } else if (value === '2') {
+                document.getElementById('company1').style.display = "block";
+                document.getElementById('person1').style.display = "none";
+            } else {
+                document.getElementById('person1').style.display = "none";
+                document.getElementById('company1').style.display = "none";
+            }
+        }
+        function getTypeOfClientDebit() {
+            const select = document.getElementById('inputGroupSelect04');
+            const value = select.options[select.selectedIndex].value;
+            if (value === '1') {
+                document.getElementById('person2').style.display = "block";
+                document.getElementById('company2').style.display = "none";
+            } else if (value === '2') {
+                document.getElementById('company2').style.display = "block";
+                document.getElementById('person2').style.display = "none";
+            } else {
+                document.getElementById('person2').style.display = "none";
+                document.getElementById('company2').style.display = "none";
+            }
+        }
+    </script>
+</div>
+</body>
+</html>
