@@ -35,6 +35,8 @@ public class CreditAccount implements Account {
     @JoinColumn(name = "ссid")
     private CompanyClient companyClient;
 
+    public Long getCompanyClientId() { return companyClient.getId(); }
+
     @Override
     public void getDetails() {
 

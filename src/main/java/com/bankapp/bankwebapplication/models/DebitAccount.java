@@ -16,13 +16,15 @@ public class DebitAccount implements Account {
 //    private transient Client clientId;
     @ManyToOne
     @JoinColumn(name = "pcid")
-    private PersonClient client;
+    private PersonClient personClient;
 
-    public Long getPersonalClientId() { return client.getId(); }
+    public Long getPersonalClientId() { return personClient.getId(); }
 
     @ManyToOne
     @JoinColumn(name = "ссid")
-    private CompanyClient client2;
+    private CompanyClient companyClient;
+
+    public Long getCompanyClientId() { return companyClient.getId(); }
 
 //    public Long getClientId() { return clientId.getId(); }
 //    public void setClientId(Client clientId) { this.clientId = clientId; }
