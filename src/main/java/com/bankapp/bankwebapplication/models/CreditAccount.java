@@ -2,6 +2,8 @@ package com.bankapp.bankwebapplication.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +24,16 @@ public class CreditAccount implements Account {
     public LocalDateTime expiredAt;
     public LocalDateTime getExpiredAt() { return expiredAt; }
     public void setExpiredAt(LocalDateTime expiredAt) { this.expiredAt = expiredAt; }
+
+    @ManyToOne
+    @JoinColumn(name = "pcid")
+    private PersonClient personClient;
+
+    public Long getPersonalClientId() { return personClient.getId(); }
+
+    @ManyToOne
+    @JoinColumn(name = "ссid")
+    private CompanyClient companyClient;
 
     @Override
     public void getDetails() {
