@@ -60,15 +60,17 @@ public class Bank {
         return "redirect:/";
     }
 
-    @PostMapping(path = "/person-credit")
-    String createPersonalCreditAccount(@ModelAttribute CreditAccount creditAccount) {
-        creditAccountRepository.save(creditAccount);
+    @PostMapping(path = "/company-debit")
+    String createCompanyDebitAccount(@ModelAttribute DebitAccountDTO debitAccountDTO) {
+        DebitAccount debitAccount = new DebitAccount();
+        DebitAccountService.map(debitAccountDTO, debitAccount);
+        debitAccountRepository.save(debitAccount);
         return "redirect:/";
     }
 
-    @PostMapping(path = "/company-debit")
-    String createCompanyDebitAccount(@ModelAttribute DebitAccount debitAccount) {
-        debitAccountRepository.save(debitAccount);
+    @PostMapping(path = "/person-credit")
+    String createPersonalCreditAccount(@ModelAttribute CreditAccount creditAccount) {
+        creditAccountRepository.save(creditAccount);
         return "redirect:/";
     }
 

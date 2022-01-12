@@ -155,14 +155,16 @@
                     </form>
                 </div>
                 <div style="display: none;" id="company2">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Provide company ID for debit</span>
-                        <input required name="ccid" type="text" aria-label="Id" class="form-control" placeholder="Id">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input required name="amountOfMoney" id="companyDebitAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <button type="submit" class="btn btn-success">Create debit account</button>
+                    <form action="/company-debit" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Provide company ID for debit</span>
+                            <input required name="ccid" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input required name="amountOfMoney" id="companyDebitAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <button type="submit" class="btn btn-success">Create debit account</button>
+                    </form>
                 </div>
             </div>
 
