@@ -1,8 +1,10 @@
 package com.bankapp.bankwebapplication.controllers;
 
 import com.bankapp.bankwebapplication.models.CompanyClient;
+import com.bankapp.bankwebapplication.models.DebitAccount;
 import com.bankapp.bankwebapplication.models.PersonClient;
 import com.bankapp.bankwebapplication.repositories.CompanyClientRepository;
+import com.bankapp.bankwebapplication.repositories.DebitAccountRepository;
 import com.bankapp.bankwebapplication.repositories.PersonalClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ public class Bank {
     PersonalClientRepository personalClientRepository;
     @Autowired
     CompanyClientRepository companyClientRepository;
+    @Autowired
+    DebitAccountRepository debitAccountRepository;
 
     @GetMapping(path = "/")
     ModelAndView getMainPage(ModelAndView modelAndView) {
@@ -42,6 +46,12 @@ public class Bank {
     @PostMapping(path = "/company")
     String createCompanyClient(@ModelAttribute CompanyClient companyClient) {
         companyClientRepository.save(companyClient);
+        return "redirect:/";
+    }
+
+    @PostMapping(path = "/person-debit")
+    String createPersonalDebitAccount(@ModelAttribute DebitAccount debitAccount) {
+        debitAccountRepository.save(debitAccount);
         return "redirect:/";
     }
 
