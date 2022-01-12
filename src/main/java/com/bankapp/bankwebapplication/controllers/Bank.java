@@ -1,13 +1,11 @@
 package com.bankapp.bankwebapplication.controllers;
 
-import com.bankapp.bankwebapplication.models.CompanyClient;
-import com.bankapp.bankwebapplication.models.CreditAccount;
-import com.bankapp.bankwebapplication.models.DebitAccount;
-import com.bankapp.bankwebapplication.models.PersonClient;
+import com.bankapp.bankwebapplication.models.*;
 import com.bankapp.bankwebapplication.repositories.CompanyClientRepository;
 import com.bankapp.bankwebapplication.repositories.CreditAccountRepository;
 import com.bankapp.bankwebapplication.repositories.DebitAccountRepository;
 import com.bankapp.bankwebapplication.repositories.PersonalClientRepository;
+import com.bankapp.bankwebapplication.services.DebitAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +53,9 @@ public class Bank {
     }
 
     @PostMapping(path = "/person-debit")
-    String createPersonalDebitAccount(@ModelAttribute DebitAccount debitAccount) {
+    String createPersonalDebitAccount(@ModelAttribute DebitAccountDTO debitAccountDTO) {
+        DebitAccount debitAccount = new DebitAccount();
+        DebitAccountService.map(debitAccountDTO, debitAccount);
         debitAccountRepository.save(debitAccount);
         return "redirect:/";
     }
@@ -63,6 +63,12 @@ public class Bank {
     @PostMapping(path = "/person-credit")
     String createPersonalCreditAccount(@ModelAttribute CreditAccount creditAccount) {
         creditAccountRepository.save(creditAccount);
+        return "redirect:/";
+    }
+
+    @PostMapping(path = "/company-debit")
+    String createCompanyDebitAccount(@ModelAttribute DebitAccount debitAccount) {
+        debitAccountRepository.save(debitAccount);
         return "redirect:/";
     }
 
