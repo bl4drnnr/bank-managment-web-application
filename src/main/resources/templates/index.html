@@ -95,21 +95,23 @@
                 </div>
 
                 <div style="display: none;" id="person1">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Provide personal client ID for credit</span>
-                        <input required name="personalIdCredit" type="text" aria-label="Id" class="form-control" placeholder="Id">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input required name="personalCreditAmount" id="personalCreditAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div class="mb-3">
-                        <label for="start">Date of expire:</label>
-                        <input type="date" id="start" name="trip-start" class="form-control"
-                               value="2018-07-22"
-                               min="2018-01-01" max="2018-12-31">
-                    </div>
+                    <form action="/person-credit" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Provide personal client ID for credit</span>
+                            <input required name="personalIdCredit" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input required name="amountOfMoney" id="personalCreditAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="mb-3">
+                            <label for="start">Date of expire:</label>
+                            <input type="date" id="start" name="expiredAt" class="form-control"
+                                   value="2018-07-22"
+                                   min="2000-01-01" max="2050-12-31">
+                        </div>
 
-                    <button type="submit" class="btn btn-success">Create credit account</button>
+                        <button type="submit" class="btn btn-success">Create credit account</button>
+                    </form>
                 </div>
                 <div style="display: none;" id="company1">
                     <div class="input-group mb-3">
