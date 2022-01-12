@@ -114,20 +114,22 @@
                     </form>
                 </div>
                 <div style="display: none;" id="company1">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Provide company ID for credit</span>
-                        <input required name="companyIdCredit" type="text" aria-label="Id" class="form-control" placeholder="Id">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input required name="companyCreditAmount" id="companyCreditAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                    </div>
-                    <div class="mb-3">
-                        <label for="start1">Date of expire:</label>
-                        <input type="date" id="start1" name="trip-start" class="form-control"
-                               value="2018-07-22"
-                               min="2018-01-01" max="2099-12-31">
-                    </div>
-                    <button type="submit" class="btn btn-success">Create credit account</button>
+                    <form action="/company-credit" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Provide company ID for credit</span>
+                            <input required name="companyIdCredit" type="text" aria-label="Id" class="form-control" placeholder="Id">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input required name="companyCreditAmount" id="companyCreditAmount" type="text" class="form-control" placeholder="Provide amount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                        <div class="mb-3">
+                            <label for="start1">Date of expire:</label>
+                            <input type="date" id="start1" name="trip-start" class="form-control"
+                                   value="2018-07-22"
+                                   min="2018-01-01" max="2099-12-31">
+                        </div>
+                        <button type="submit" class="btn btn-success">Create credit account</button>
+                    </form>
                 </div>
 
             </div>
