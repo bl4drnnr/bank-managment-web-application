@@ -69,8 +69,12 @@ public class Bank {
     }
 
     @PostMapping(path = "/person-credit")
-    String createPersonalCreditAccount(@ModelAttribute CreditAccount creditAccount) {
-        creditAccountRepository.save(creditAccount);
+    String createPersonalCreditAccount() {
+        return "redirect:/";
+    }
+
+    @PostMapping(path = "/company-credit")
+    String createCompanyCreditAccount() {
         return "redirect:/";
     }
 
