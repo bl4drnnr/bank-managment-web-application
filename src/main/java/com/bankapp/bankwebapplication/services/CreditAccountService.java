@@ -20,7 +20,7 @@ public class CreditAccountService {
 
     public static void map(CreditAccountDTO creditAccountDTO, CreditAccount creditAccount) {
         creditAccount.setAmountOfMoney(creditAccountDTO.getAmountOfMoney());
-        // Add expired at
+        creditAccount.setExpiredAt(creditAccountDTO.getExpiredAt());
 
         if (creditAccountDTO.getPcid() != null) {
             creditAccount.setPersonClient(personalClientRepository.findById(creditAccountDTO.getPcid()).get());

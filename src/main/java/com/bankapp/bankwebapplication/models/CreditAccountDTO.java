@@ -1,6 +1,6 @@
 package com.bankapp.bankwebapplication.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class CreditAccountDTO {
 
@@ -16,7 +16,7 @@ public class CreditAccountDTO {
     public Long getAmountOfMoney() { return amountOfMoney; }
     public void setAmountOfMoney(Long amountOfMoney) { this.amountOfMoney = amountOfMoney; }
 
-    private LocalDateTime expiredAt;
-    public LocalDateTime getExpiredAt() { return expiredAt; }
-    public void setExpiredAt(LocalDateTime expiredAt) { this.expiredAt = expiredAt; }
+    private LocalDate expiredAt;
+    public LocalDate getExpiredAt() { return expiredAt; }
+    public void setExpiredAt(LocalDate expiredAt) { this.expiredAt = expiredAt; }
 }

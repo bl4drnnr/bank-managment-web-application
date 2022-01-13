@@ -1,7 +1,7 @@
 package com.bankapp.bankwebapplication.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 public class CreditAccount implements Account {
@@ -29,9 +29,9 @@ public class CreditAccount implements Account {
     public Long getAmountOfMoney() { return amountOfMoney; }
     public void setAmountOfMoney(Long amountOfMoney) { this.amountOfMoney = amountOfMoney; }
 
-    public LocalDateTime expiredAt;
-    public LocalDateTime getExpiredAt() { return expiredAt; }
-    public void setExpiredAt(LocalDateTime expiredAt) { this.expiredAt = expiredAt; }
+    public LocalDate expiredAt;
+    public LocalDate getExpiredAt() { return expiredAt; }
+    public void setExpiredAt(LocalDate expiredAt) { this.expiredAt = expiredAt; }
 
     @Override
     public void getDetails() {
