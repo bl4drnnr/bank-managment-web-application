@@ -5,6 +5,7 @@ import com.bankapp.bankwebapplication.repositories.CompanyClientRepository;
 import com.bankapp.bankwebapplication.repositories.CreditAccountRepository;
 import com.bankapp.bankwebapplication.repositories.DebitAccountRepository;
 import com.bankapp.bankwebapplication.repositories.PersonalClientRepository;
+import com.bankapp.bankwebapplication.services.CreditAccountService;
 import com.bankapp.bankwebapplication.services.DebitAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -69,12 +69,18 @@ public class Bank {
     }
 
     @PostMapping(path = "/person-credit")
-    String createPersonalCreditAccount() {
+    String createPersonalCreditAccount(@ModelAttribute CreditAccountDTO creditAccountDTO) {
+        CreditAccount creditAccount = new CreditAccount();
+        CreditAccountService.map(creditAccountDTO, creditAccount);
+        creditAccountRepository.save(creditAccount);
         return "redirect:/";
     }
 
     @PostMapping(path = "/company-credit")
-    String createCompanyCreditAccount() {
+    String createCompanyCreditAccount(@ModelAttribute CreditAccountDTO creditAccountDTO) {
+        CreditAccount creditAccount = new CreditAccount();
+        CreditAccountService.map(creditAccountDTO, creditAccount);
+        creditAccountRepository.save(creditAccount);
         return "redirect:/";
     }
 
