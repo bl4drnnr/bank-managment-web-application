@@ -15,9 +15,9 @@ public class CreditAccount implements Account {
     @JoinColumn(name = "pcid")
     private PersonClient personClient;
 
-    public Long getPersonalClient() {
+    public PersonClient getPersonalClient() {
         if (personClient != null) {
-            return personClient.getId();
+            return personClient;
         } else {
             return null;
         }
@@ -28,9 +28,9 @@ public class CreditAccount implements Account {
     @JoinColumn(name = "ссid")
     private CompanyClient companyClient;
 
-    public Long getCompanyClient() {
+    public CompanyClient getCompanyClient() {
         if (companyClient != null) {
-            return companyClient.getId();
+            return companyClient;
         } else {
             return null;
         }
