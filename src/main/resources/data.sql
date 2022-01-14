@@ -6,3 +6,6 @@ INSERT INTO person_client(first_name, last_name, pesel, address, home_phone, wor
 INSERT INTO company_client(nip, company_name, company_address, company_phone) VALUES ('6565656', 'IT.net', 'Sloneczna 2', '+000999111');
 INSERT INTO company_client(nip, company_name, company_address, company_phone) VALUES ('3214235', 'Deloitte', 'Rejtana 412', '+98877665');
 INSERT INTO company_client(nip, company_name, company_address, company_phone) VALUES ('3456223', 'TopSoftware', 'Zeromskiego 4', '+456745323');
+
+INSERT INTO debit_account(amount_of_money, pcid, ссid) VALUES (3000, 1, null);
+INSERT INTO debit_account(amount_of_money, pcid, ссid) VALUES (15000, null, 3);
