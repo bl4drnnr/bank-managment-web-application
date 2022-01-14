@@ -31,11 +31,15 @@ public class Bank {
     ModelAndView getMainPage(ModelAndView modelAndView) {
         List<PersonClient> allPersonalClients = personalClientRepository.findAll();
         List<CompanyClient> allCompanies = companyClientRepository.findAll();
+        List<DebitAccount> allDebitAccounts = debitAccountRepository.findAll();
+        List<CreditAccount> allCreditAccounts = creditAccountRepository.findAll();
 
         modelAndView.setViewName("index");
 
         modelAndView.addObject("allPersonalClients", allPersonalClients);
         modelAndView.addObject("allCompanies", allCompanies);
+        modelAndView.addObject("allDebitAccounts", allDebitAccounts);
+        modelAndView.addObject("allCreditAccounts", allCreditAccounts);
 
         return modelAndView;
     }
