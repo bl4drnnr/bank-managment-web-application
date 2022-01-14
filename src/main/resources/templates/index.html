@@ -176,7 +176,7 @@
     <hr>
     <div style="display: flex">
         <div style="width: 50%; margin-right: 50px">
-            <h4>Recently created personal clients:</h4>
+            <h4>Personal clients:</h4>
             <div th:each="client: ${allPersonalClients}">
                 <span><b>ID: </b></span>
                 <span class="fs-6" th:text="${client.getId}"></span>
@@ -199,7 +199,7 @@
             </div>
         </div>
         <div style="width: 50%">
-            <h4>Recently created companies:</h4>
+            <h4>Created companies:</h4>
             <div th:each="company: ${allCompanies}">
                 <span><b>ID: </b></span>
                 <span class="fs-6" th:text="${company.getId}"></span>
@@ -215,8 +215,13 @@
             </div>
         </div>
     </div>
-    <div>
-        <h4>Recently created account:</h4>
+    <div style="display: flex">
+        <div style="width: 50%; margin-right: 50px">
+            <h4>Created personal accounts:</h4>
+        </div>
+        <div style="width: 50%">
+            <h4>Created company accounts:</h4>
+        </div>
     </div>
 
     <script>

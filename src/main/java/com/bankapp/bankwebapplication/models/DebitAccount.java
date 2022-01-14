@@ -14,14 +14,26 @@ public class DebitAccount implements Account {
     @JoinColumn(name = "pcid")
     private PersonClient personClient;
 
-    public Long getPersonalClient() { return personClient.getId(); }
+    public Long getPersonalClient() {
+        if (personClient != null) {
+            return personClient.getId();
+        } else {
+            return null;
+        }
+    }
     public void setPersonalClient(PersonClient personClient) { this.personClient = personClient; }
 
     @ManyToOne
     @JoinColumn(name = "ссid")
     private CompanyClient companyClient;
 
-    public Long getCompanyClient() { return companyClient.getId(); }
+    public Long getCompanyClient() {
+        if (companyClient != null) {
+            return companyClient.getId();
+        } else {
+            return null;
+        }
+    }
     public void setCompanyClient(CompanyClient companyClient) {this.companyClient = companyClient;}
 
     private Long amountOfMoney;

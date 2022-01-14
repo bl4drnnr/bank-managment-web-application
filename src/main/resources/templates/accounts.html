@@ -30,6 +30,21 @@
     </div>
     <div>
         <h4>List of accounts:</h4>
+        <div th:each="debit: ${allDebitAccounts}">
+            <span><b>ID: </b></span>
+            <span class="fs-6" th:text="${debit.getId}"></span>
+            <span th:if="${debit.getPersonalClient != null}">
+                <span><b>PCID: </b></span>
+                <span class="fs-6" th:text="${debit.getPersonalClient}"></span>
+            </span>
+            <span th:if="${debit.getCompanyClient != null}">
+                <span><b>CCID: </b></span>
+                <span class="fs-6" th:text="${debit.getCompanyClient}"></span>
+            </span>
+            <span><b>Amount of money: </b></span>
+            <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
+            <hr>
+        </div>
     </div>
 </div>
 </body>
