@@ -35,11 +35,15 @@
             <span class="fs-6" th:text="${debit.getId}"></span>
             <span th:if="${debit.getPersonalClient != null}">
                 <span><b>PCID: </b></span>
+                <span class="fs-6" th:text="${debit.getPersonalClient.getId}"></span>
+                <span><b>First name and last name: </b></span>
                 <span class="fs-6" th:text="${debit.getPersonalClient.getFirstName}"></span>
                 <span class="fs-6" th:text="${debit.getPersonalClient.getLastName}"></span>
             </span>
             <span th:if="${debit.getCompanyClient != null}">
                 <span><b>CCID: </b></span>
+                <span class="fs-6" th:text="${debit.getCompanyClient.getId}"></span>
+                <span><b>Company name: </b></span>
                 <span class="fs-6" th:text="${debit.getCompanyClient.getCompanyName}"></span>
             </span>
             <span><b>Amount of money: </b></span>
