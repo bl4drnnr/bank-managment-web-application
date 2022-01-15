@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,11 +31,13 @@ public class AccountController {
     ModelAndView getAllAccounts(ModelAndView modelAndView){
         List<DebitAccount> allDebitAccounts = debitAccountRepository.findAll();
         List<CreditAccount> allCreditAccounts = creditAccountRepository.findAll();
+        String type = "List of all accounts:";
 
         modelAndView.setViewName("accounts");
 
         modelAndView.addObject("allDebitAccounts", allDebitAccounts);
         modelAndView.addObject("allCreditAccounts", allCreditAccounts);
+        modelAndView.addObject("type", type);
         return modelAndView;
     }
 
@@ -46,25 +49,32 @@ public class AccountController {
 
         if (typeOfAccount == 1) {
             List<CreditAccount> allCreditAccounts;
+            String type = "";
             if (typeOfClient == 1) {
+                type = "List of credit accounts for personal clients:";
                 allCreditAccounts = creditAccountRepository.findAllBypcid(id);
             } else {
+                type = "List of credit accounts for company clients:";
                 allCreditAccounts = creditAccountRepository.findAllByccid(id);
             }
             modelAndView.setViewName("accounts");
             modelAndView.addObject("allCreditAccounts", allCreditAccounts);
-            return modelAndView;
+            modelAndView.addObject("type", type);
         } else {
             List<DebitAccount> allDebitAccounts;
+            String type = "";
             if (typeOfClient == 1) {
+                type = "List of debit accounts for personal clients:";
                 allDebitAccounts = debitAccountRepository.findAllBypcid(id);
             } else {
+                type = "List of debit accounts for company clients:";
                 allDebitAccounts = debitAccountRepository.findAllByccid(id);
             }
             modelAndView.setViewName("accounts");
             modelAndView.addObject("allDebitAccounts", allDebitAccounts);
-            return modelAndView;
+            modelAndView.addObject("type", type);
         }
+        return modelAndView;
     }
 
 }
