@@ -18,6 +18,9 @@
         .find-all {
             height: 2.5em;
         }
+        .picker {
+            margin-right: 15px;
+        }
     </style>
 </head>
 <body>
@@ -39,11 +42,18 @@
         <h4>Here you can find all of clients:</h4>
         <div class="input-container">
             <form action="/get-client-by-id" method="get" class="by-id-input">
+                <div class="input-group mb-3 picker">
+                    <label class="input-group-text find-all" for="inputGroupSelect02">Choose the type of client</label>
+                    <select class="form-select" id="inputGroupSelect02">
+                        <option value="1" selected>Person</option>
+                        <option value="2">Company</option>
+                    </select>
+                </div>
                 <input type="text" name="id" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find</button>
             </form>
             <form action="/get-all-clients" method="get">
-                <button class="btn btn-outline-secondary find-all" type="submit" id="button-addon2">Show all</button>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Show all</button>
             </form>
         </div>
     </div>
