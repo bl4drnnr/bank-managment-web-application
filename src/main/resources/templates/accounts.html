@@ -50,6 +50,28 @@
             <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
             <hr>
         </div>
+        <div th:each="credit: ${allCreditAccounts}">
+            <span><b>ID: </b></span>
+            <span class="fs-6" th:text="${credit.getId}"></span>
+            <span th:if="${credit.getPersonalClient != null}">
+                <span><b>PCID: </b></span>
+                <span class="fs-6" th:text="${credit.getPersonalClient.getId}"></span>
+                <span><b>First name and last name: </b></span>
+                <span class="fs-6" th:text="${credit.getPersonalClient.getFirstName}"></span>
+                <span class="fs-6" th:text="${credit.getPersonalClient.getLastName}"></span>
+            </span>
+            <span th:if="${credit.getCompanyClient != null}">
+                <span><b>CCID: </b></span>
+                <span class="fs-6" th:text="${credit.getCompanyClient.getId}"></span>
+                <span><b>Company name: </b></span>
+                <span class="fs-6" th:text="${credit.getCompanyClient.getCompanyName}"></span>
+            </span>
+            <span><b>Amount of money: </b></span>
+            <span class="fs-6" th:text="${credit.getAmountOfMoney}"></span>
+            <span><b>Expired at: </b></span>
+            <span class="fs-6" th:text="${credit.getExpiredAt}"></span>
+            <hr>
+        </div>
     </div>
 </div>
 </body>
