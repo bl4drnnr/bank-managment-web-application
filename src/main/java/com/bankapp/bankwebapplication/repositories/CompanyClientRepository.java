@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface CompanyClientRepository extends CrudRepository<CompanyClient, Long> {
     Optional<CompanyClient> findById(Long id);
-
     List<CompanyClient> findAll();
+    List<CompanyClient> findAllById(Long id);
 }

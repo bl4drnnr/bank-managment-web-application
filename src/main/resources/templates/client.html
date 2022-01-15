@@ -22,13 +22,15 @@
     </div>
     <div>
         <h4>Here you can find all of clients:</h4>
-        <div class="input-group mb-3">
-            <form action="/get-client-by-id" method="get">
+        <div style="display: flex; margin-bottom: 15px">
+            <form action="/get-client-by-id" method="get"
+                  style="display: flex; margin-right: 15px; width: 90%; height: 2.5em"
+            >
                 <input type="text" name="id" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find</button>
             </form>
             <form action="/get-all-clients" method="get">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Show all</button>
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="height: 2.5em;">Show all</button>
             </form>
         </div>
     </div>

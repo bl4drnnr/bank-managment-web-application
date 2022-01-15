@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ClientController {
@@ -41,10 +42,14 @@ public class ClientController {
     }
 
     @RequestMapping("/get-client-by-id")
-    ModelAndView getClientById(HttpServletRequest request, HttpServletResponse response) {
-        int i = Integer.parseInt(request.getParameter("id"));
-        ModelAndView modelAndView = new ModelAndView();
+    ModelAndView getClientById(HttpServletRequest request, ModelAndView modelAndView) {
+        long id = Integer.parseInt(request.getParameter("id"));
+        List<PersonClient> allPersonalClients = personalClientRepository.findAllById(id);
+
         modelAndView.setViewName("client");
+
+        modelAndView.addObject("allPersonalClients", allPersonalClients);
+
         return modelAndView;
     }
 
