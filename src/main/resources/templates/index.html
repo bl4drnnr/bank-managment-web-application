@@ -217,10 +217,52 @@
     </div>
     <div style="display: flex">
         <div style="width: 50%; margin-right: 50px">
-            <h4>Created personal accounts:</h4>
+            <h4>Created debit accounts:</h4>
+            <div th:each="acc: ${allDebitAccounts}">
+                <span><b>ID: </b></span>
+                <span class="fs-6" th:text="${acc.getId}"></span>
+                <span th:if="${acc.getPersonalClient != null}">
+                    <span><b>PCID: </b></span>
+                    <span class="fs-6" th:text="${acc.getPersonalClient.getId}"></span>
+                    <span><b>First name and last name: </b></span>
+                    <span class="fs-6" th:text="${acc.getPersonalClient.getFirstName}"></span>
+                    <span class="fs-6" th:text="${acc.getPersonalClient.getLastName}"></span>
+                </span>
+                <span th:if="${acc.getCompanyClient != null}">
+                    <span><b>CCID: </b></span>
+                    <span class="fs-6" th:text="${acc.getCompanyClient.getId}"></span>
+                    <span><b>Company name: </b></span>
+                    <span class="fs-6" th:text="${acc.getCompanyClient.getCompanyName}"></span>
+                </span>
+                <span><b>Amount of money: </b></span>
+                <span class="fs-6" th:text="${acc.getAmountOfMoney}"></span>
+                <hr>
+            </div>
         </div>
         <div style="width: 50%">
-            <h4>Created company accounts:</h4>
+            <h4>Created credit accounts:</h4>
+            <div th:each="acc: ${allCreditAccounts}">
+                <span><b>ID: </b></span>
+                <span class="fs-6" th:text="${acc.getId}"></span>
+                <span th:if="${acc.getPersonalClient != null}">
+                    <span><b>PCID: </b></span>
+                    <span class="fs-6" th:text="${acc.getPersonalClient.getId}"></span>
+                    <span><b>First name and last name: </b></span>
+                    <span class="fs-6" th:text="${acc.getPersonalClient.getFirstName}"></span>
+                    <span class="fs-6" th:text="${acc.getPersonalClient.getLastName}"></span>
+                </span>
+                <span th:if="${acc.getCompanyClient != null}">
+                    <span><b>CCID: </b></span>
+                    <span class="fs-6" th:text="${acc.getCompanyClient.getId}"></span>
+                    <span><b>Company name: </b></span>
+                    <span class="fs-6" th:text="${acc.getCompanyClient.getCompanyName}"></span>
+                </span>
+                <span><b>Amount of money: </b></span>
+                <span class="fs-6" th:text="${acc.getAmountOfMoney}"></span>
+                <span><b>Expired at: </b></span>
+                <span class="fs-6" th:text="${acc.getExpiredAt}"></span>
+                <hr>
+            </div>
         </div>
     </div>
 
