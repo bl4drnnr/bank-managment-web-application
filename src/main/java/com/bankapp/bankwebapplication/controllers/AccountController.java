@@ -41,18 +41,29 @@ public class AccountController {
     @RequestMapping(path = "/get-account-by-id")
     ModelAndView getAccountById(HttpServletRequest request, ModelAndView modelAndView) {
         long id = Integer.parseInt(request.getParameter("id"));
-        long clientTypePicker = Integer.parseInt(request.getParameter("clientTypePicker"));
-        if (clientTypePicker == 1) {
-            List<CreditAccount> creditAccountById = creditAccountRepository.findAllById(id);
+        long typeOfAccount = Integer.parseInt(request.getParameter("typeOfAccount"));
+        long typeOfClient = Integer.parseInt(request.getParameter("typeOfClient"));
 
+        if (typeOfAccount == 1) {
+            List<CreditAccount> allCreditAccounts;
+            if (typeOfClient == 1) {
+                allCreditAccounts = creditAccountRepository.findAllBypcid(id);
+            } else {
+                allCreditAccounts = creditAccountRepository.findAllByccid(id);
+            }
             modelAndView.setViewName("accounts");
-            modelAndView.addObject("allCreditAccounts", creditAccountById);
+            modelAndView.addObject("allCreditAccounts", allCreditAccounts);
         } else {
-            List<DebitAccount> debitAccountById = debitAccountRepository.findAllById(id);
-
+            List<DebitAccount> allDebitAccounts;
+            if (typeOfClient == 1) {
+                allDebitAccounts = debitAccountRepository.findAllBypcid(id);
+            } else {
+                allDebitAccounts = debitAccountRepository.findAllByccid(id);
+            }
             modelAndView.setViewName("accounts");
-            modelAndView.addObject("allDebitAccounts", debitAccountById);
+            modelAndView.addObject("allCreditAccounts", allDebitAccounts);
         }
+
         return modelAndView;
     }
 

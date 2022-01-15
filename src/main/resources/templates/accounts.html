@@ -44,10 +44,17 @@
         <div class="input-container">
             <form action="/get-account-by-id" method="get" class="by-id-input">
                 <div class="input-group mb-3 picker">
-                    <label class="input-group-text find-all" for="inputGroupSelect02">Choose the type of client</label>
-                    <select class="form-select" id="inputGroupSelect02" name="clientTypePicker">
+                    <label class="input-group-text find-all" for="inputGroupSelect02">Choose type of account</label>
+                    <select class="form-select" id="inputGroupSelect02" name="typeOfAccount">
                         <option value="1" selected>Credit</option>
                         <option value="2">Debit</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3 picker">
+                    <label class="input-group-text find-all" for="inputGroupSelect02">Choose type of client</label>
+                    <select class="form-select" id="inputGroupSelect01" name="typeOfClient">
+                        <option value="1" selected>Person</option>
+                        <option value="2">Company</option>
                     </select>
                 </div>
                 <input type="text" name="id" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">

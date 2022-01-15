@@ -9,6 +9,8 @@ INSERT INTO company_client(nip, company_name, company_address, company_phone) VA
 
 INSERT INTO debit_account(amount_of_money, pcid, ссid) VALUES (3000, 1, null);
 INSERT INTO debit_account(amount_of_money, pcid, ссid) VALUES (15000, null, 3);
+INSERT INTO debit_account(amount_of_money, pcid, ссid) VALUES (12000, null, 3);
 
 INSERT INTO credit_account(amount_of_money, expired_at, pcid, ссid) VALUES (12000, '2018-07-22', 1, null);
+INSERT INTO credit_account(amount_of_money, expired_at, pcid, ссid) VALUES (10000, '2018-03-05', 1, null);
 INSERT INTO credit_account(amount_of_money, expired_at, pcid, ссid) VALUES (23000, '2020-12-12', null, 3);

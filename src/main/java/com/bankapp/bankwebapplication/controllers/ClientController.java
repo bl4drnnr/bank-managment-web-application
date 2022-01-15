@@ -43,6 +43,7 @@ public class ClientController {
     ModelAndView getClientById(HttpServletRequest request, ModelAndView modelAndView) {
         long id = Integer.parseInt(request.getParameter("id"));
         long clientTypePicker = Integer.parseInt(request.getParameter("clientTypePicker"));
+
         if (clientTypePicker == 1) {
             List<PersonClient> personClientById = personalClientRepository.findAllById(id);
 
@@ -54,6 +55,7 @@ public class ClientController {
             modelAndView.setViewName("client");
             modelAndView.addObject("allCompanies", companyClientById);
         }
+
         return modelAndView;
     }
 
