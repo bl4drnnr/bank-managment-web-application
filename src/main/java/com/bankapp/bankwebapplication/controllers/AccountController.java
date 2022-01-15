@@ -38,7 +38,7 @@ public class AccountController {
         return modelAndView;
     }
 
-    @GetMapping(path = "/get-account-by-id")
+    @RequestMapping(path = "/get-account-by-id")
     ModelAndView getAccountById(HttpServletRequest request, ModelAndView modelAndView) {
         long id = Integer.parseInt(request.getParameter("id"));
         long clientTypePicker = Integer.parseInt(request.getParameter("clientTypePicker"));
