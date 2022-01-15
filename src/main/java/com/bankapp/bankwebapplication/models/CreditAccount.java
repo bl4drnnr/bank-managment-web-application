@@ -1,8 +1,6 @@
 package com.bankapp.bankwebapplication.models;
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 @Entity
