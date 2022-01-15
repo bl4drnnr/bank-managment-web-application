@@ -25,7 +25,9 @@
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="button" id="button-addon1">Find</button>
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Show all</button>
+            <form action="/get-all-accounts" method="get">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Show all</button>
+            </form>
         </div>
     </div>
     <div>
