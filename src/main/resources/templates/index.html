@@ -4,6 +4,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Home Page</title>
+    <style>
+        .flex-box {
+            display: flex;
+        }
+        .half-box {
+            width: 50%;
+            margin-right: 50px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -20,9 +29,9 @@
             </ul>
         </nav>
     </div>
-    <div style="display: flex">
+    <div class="flex-box">
 
-        <div style="width: 50%; margin-right: 50px">
+        <div class="half-box">
 
             <h4>Create client:</h4>
             <div class="input-group mb-3">
@@ -174,8 +183,8 @@
 
     </div>
     <hr>
-    <div style="display: flex">
-        <div style="width: 50%; margin-right: 50px">
+    <div class="flex-box">
+        <div class="half-box">
             <h4>Personal clients:</h4>
             <div th:each="client: ${allPersonalClients}">
                 <span><b>ID: </b></span>
@@ -215,8 +224,8 @@
             </div>
         </div>
     </div>
-    <div style="display: flex">
-        <div style="width: 50%; margin-right: 50px">
+    <div class="flex-box">
+        <div class="half-box">
             <h4>Created debit accounts:</h4>
             <div th:each="acc: ${allDebitAccounts}">
                 <span><b>ID: </b></span>
