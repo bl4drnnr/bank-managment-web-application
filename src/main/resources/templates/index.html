@@ -12,6 +12,18 @@
             width: 50%;
             margin-right: 50px;
         }
+        .none-box {
+            display: none;
+        }
+        .width-block {
+            width: 50%;
+        }
+        .margin-input {
+            margin-right: 10px;
+        }
+        .padding-input {
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -43,27 +55,27 @@
                 </select>
             </div>
 
-            <div id="person" style="display: none">
+            <div id="person" class="none-box">
                 <form action="/person" method="post">
                     <div class="input-group">
                         <span class="input-group-text">First and last name</span>
                         <input required name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First name">
                         <input required name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last name">
                     </div>
-                    <div class="input-group mb-3" style="padding-top: 15px;">
+                    <div class="input-group mb-3 padding-input">
                         <input required name="pesel" type="text" class="form-control" placeholder="PESEL" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
                         <input required name="address" type="text" class="form-control" placeholder="Address" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <div class="input-group mb-3">
-                        <input name="workPhone" type="text" class="form-control" placeholder="Work phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default" style="margin-right: 10px">
+                        <input name="workPhone" type="text" class="form-control margin-input" placeholder="Work phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         <input name="homePhone" type="text" class="form-control" placeholder="Home phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                     </div>
                     <button type="submit" class="btn btn-success">Create client</button>
                 </form>
             </div>
-            <div id="company" style="display: none">
+            <div id="company" class="none-box">
                 <form action="/company" method="post">
                     <div class="input-group mb-3">
                         <input required name="nip" type="text" class="form-control" placeholder="NIP" aria-label="Default" aria-describedby="inputGroup-sizing-default">
@@ -82,7 +94,7 @@
             </div>
         </div>
 
-        <div style="width: 50%;">
+        <div class="width-block">
             <h4>Create account:</h4>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Choose the type of account</label>
@@ -93,7 +105,7 @@
                 </select>
             </div>
 
-            <div style="display: none" id="credit1">
+            <div class="none-box" id="credit1">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect03">Choose the type of client</label>
                     <select class="form-select" id="inputGroupSelect03" onchange="getTypeOfClientCredit()">
@@ -103,7 +115,7 @@
                     </select>
                 </div>
 
-                <div style="display: none;" id="person1">
+                <div class="none-box" id="person1">
                     <form action="/person-credit" method="post">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Provide personal client ID for credit</span>
@@ -122,7 +134,7 @@
                         <button type="submit" class="btn btn-success">Create credit account</button>
                     </form>
                 </div>
-                <div style="display: none;" id="company1">
+                <div class="none-box" id="company1">
                     <form action="/company-credit" method="post">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Provide company ID for credit</span>
@@ -143,7 +155,7 @@
 
             </div>
 
-            <div style="display: none" id="debit1">
+            <div class="none-box" id="debit1">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect04">Choose the type of client</label>
                     <select class="form-select" id="inputGroupSelect04" onchange="getTypeOfClientDebit()">
@@ -153,7 +165,7 @@
                     </select>
                 </div>
 
-                <div style="display: none;" id="person2">
+                <div class="none-box" id="person2">
                     <form action="/person-debit" method="post">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Provide personal client ID for debit</span>
@@ -165,7 +177,7 @@
                         <button type="submit" class="btn btn-success">Create debit account</button>
                     </form>
                 </div>
-                <div style="display: none;" id="company2">
+                <div class="none-box" id="company2">
                     <form action="/company-debit" method="post">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Provide company ID for debit</span>
@@ -207,7 +219,7 @@
                 <hr>
             </div>
         </div>
-        <div style="width: 50%">
+        <div class="width-block">
             <h4>Created companies:</h4>
             <div th:each="company: ${allCompanies}">
                 <span><b>ID: </b></span>
@@ -248,7 +260,7 @@
                 <hr>
             </div>
         </div>
-        <div style="width: 50%">
+        <div class="width-block">
             <h4>Created credit accounts:</h4>
             <div th:each="acc: ${allCreditAccounts}">
                 <span><b>ID: </b></span>
