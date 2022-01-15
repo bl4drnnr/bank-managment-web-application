@@ -44,13 +44,13 @@
             <form action="/get-account-by-id" method="get" class="by-id-input">
                 <div class="input-group mb-3 picker">
                     <label class="input-group-text find-all" for="inputGroupSelect02">Choose the type of client</label>
-                    <select class="form-select" id="inputGroupSelect02">
+                    <select class="form-select" id="inputGroupSelect02" name="clientTypePicker">
                         <option value="1" selected>Credit</option>
                         <option value="2">Debit</option>
                     </select>
                 </div>
-                <input type="text" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1">Find</button>
+                <input type="text" name="id" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find</button>
             </form>
             <form action="/get-all-accounts" method="get">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Show all</button>

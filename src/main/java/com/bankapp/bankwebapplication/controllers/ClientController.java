@@ -39,25 +39,21 @@ public class ClientController {
         return modelAndView;
     }
 
-    @RequestMapping(path = "/get-person-client-by-id")
-    ModelAndView getPersonClientById(HttpServletRequest request, ModelAndView modelAndView) {
+    @RequestMapping(path = "/get-client-by-id")
+    ModelAndView getClientById(HttpServletRequest request, ModelAndView modelAndView) {
         long id = Integer.parseInt(request.getParameter("id"));
-        List<PersonClient> personClientById = personalClientRepository.findAllById(id);
+        long clientTypePicker = Integer.parseInt(request.getParameter("clientTypePicker"));
+        if (clientTypePicker == 1) {
+            List<PersonClient> personClientById = personalClientRepository.findAllById(id);
 
-        modelAndView.setViewName("client");
-        modelAndView.addObject("allPersonalClients", personClientById);
+            modelAndView.setViewName("client");
+            modelAndView.addObject("allPersonalClients", personClientById);
+        } else {
+            List<CompanyClient> companyClientById = companyClientRepository.findAllById(id);
 
-        return modelAndView;
-    }
-
-    @RequestMapping(path = "/get-company-client-by-id")
-    ModelAndView getCompanyClientById(HttpServletRequest request, ModelAndView modelAndView) {
-        long id = Integer.parseInt(request.getParameter("id"));
-        List<CompanyClient> companyClientById = companyClientRepository.findAllById(id);
-
-        modelAndView.setViewName("client");
-        modelAndView.addObject("allPersonalClients", companyClientById);
-
+            modelAndView.setViewName("client");
+            modelAndView.addObject("allCompanies", companyClientById);
+        }
         return modelAndView;
     }
 
