@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ClientController {
@@ -41,14 +39,24 @@ public class ClientController {
         return modelAndView;
     }
 
-    @RequestMapping("/get-client-by-id")
-    ModelAndView getClientById(HttpServletRequest request, ModelAndView modelAndView) {
+    @RequestMapping(path = "/get-person-client-by-id")
+    ModelAndView getPersonClientById(HttpServletRequest request, ModelAndView modelAndView) {
         long id = Integer.parseInt(request.getParameter("id"));
-        List<PersonClient> allPersonalClients = personalClientRepository.findAllById(id);
+        List<PersonClient> personClientById = personalClientRepository.findAllById(id);
 
         modelAndView.setViewName("client");
+        modelAndView.addObject("allPersonalClients", personClientById);
 
-        modelAndView.addObject("allPersonalClients", allPersonalClients);
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/get-company-client-by-id")
+    ModelAndView getCompanyClientById(HttpServletRequest request, ModelAndView modelAndView) {
+        long id = Integer.parseInt(request.getParameter("id"));
+        List<CompanyClient> companyClientById = companyClientRepository.findAllById(id);
+
+        modelAndView.setViewName("client");
+        modelAndView.addObject("allPersonalClients", companyClientById);
 
         return modelAndView;
     }
