@@ -19,7 +19,13 @@ public class ClientController {
     CompanyClientRepository companyClientRepository;
 
     @GetMapping(path = "/clients")
-    ModelAndView getMainPage(ModelAndView modelAndView){
+    ModelAndView getClientsPage(ModelAndView modelAndView) {
+        modelAndView.setViewName("client");
+        return modelAndView;
+    }
+
+    @GetMapping(path = "/get-all-clients")
+    ModelAndView getAllClients(ModelAndView modelAndView) {
         List<PersonClient> allPersonalClients = personalClientRepository.findAll();
         List<CompanyClient> allCompanies = companyClientRepository.findAll();
 

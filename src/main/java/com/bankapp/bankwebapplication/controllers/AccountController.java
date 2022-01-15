@@ -19,13 +19,13 @@ public class AccountController {
     DebitAccountRepository debitAccountRepository;
 
     @GetMapping(path = "/accounts")
-    ModelAndView getAccountPage(ModelAndView modelAndView) {
+    ModelAndView getAccountsPage(ModelAndView modelAndView) {
         modelAndView.setViewName("accounts");
         return modelAndView;
     }
 
     @GetMapping(path = "/get-all-accounts")
-    ModelAndView getMainPage(ModelAndView modelAndView){
+    ModelAndView getAllAccounts(ModelAndView modelAndView){
         List<DebitAccount> allDebitAccounts = debitAccountRepository.findAll();
         List<CreditAccount> allCreditAccounts = creditAccountRepository.findAll();
 
