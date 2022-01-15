@@ -13,12 +13,12 @@ public interface CreditAccountRepository extends CrudRepository<CreditAccount, L
     List<CreditAccount> findAll();
     List<CreditAccount> findAllById(Long id);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM credit_account cred WHERE cred.ccid = :ccid")
+    @Query(nativeQuery = true, value = "SELECT * FROM credit_account WHERE ccid = :ccid")
     List<CreditAccount> findAllByccid(
             @Param("ccid") Long ccid
     );
 
-    @Query(nativeQuery = true, value = "SELECT * FROM credit_account cred WHERE cred.pcid = :pcid")
+    @Query(nativeQuery = true, value = "SELECT * FROM credit_account WHERE pcid = :pcid")
     List<CreditAccount> findAllBypcid(
             @Param("pcid") Long pcid
     );

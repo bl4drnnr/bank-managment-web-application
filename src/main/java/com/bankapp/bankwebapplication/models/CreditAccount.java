@@ -1,6 +1,8 @@
 package com.bankapp.bankwebapplication.models;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 @Entity
@@ -22,10 +24,10 @@ public class CreditAccount implements Account {
             return null;
         }
     }
-    public void setPersonClient(PersonClient personClient) { this.personClient = personClient; }
+    public void setPersonalClient(PersonClient personClient) { this.personClient = personClient; }
 
     @ManyToOne
-    @JoinColumn(name = "ссid")
+    @JoinColumn(name = "ccid")
     private CompanyClient companyClient;
 
     public CompanyClient getCompanyClient() {

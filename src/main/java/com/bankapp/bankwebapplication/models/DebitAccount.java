@@ -24,7 +24,7 @@ public class DebitAccount implements Account {
     public void setPersonalClient(PersonClient personClient) { this.personClient = personClient; }
 
     @ManyToOne
-    @JoinColumn(name = "ссid")
+    @JoinColumn(name = "ccid")
     private CompanyClient companyClient;
 
     public CompanyClient getCompanyClient() {

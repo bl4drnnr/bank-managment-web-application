@@ -13,12 +13,12 @@ public interface DebitAccountRepository extends CrudRepository<DebitAccount, Lon
     List<DebitAccount> findAll();
     List<DebitAccount> findAllById(Long id);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM debit_account da WHERE da.ccid = :ccid")
+    @Query(nativeQuery = true, value = "SELECT * FROM debit_account WHERE ccid = :ccid")
     List<DebitAccount> findAllByccid(
             @Param("ccid") Long ccid
     );
 
-    @Query(nativeQuery = true, value = "SELECT * FROM debit_account da WHERE da.pcid = :pcid")
+    @Query(nativeQuery = true, value = "SELECT * FROM debit_account WHERE pcid = :pcid")
     List<DebitAccount> findAllBypcid(
             @Param("pcid") Long pcid
     );

@@ -23,10 +23,10 @@ public class CreditAccountService {
         creditAccount.setExpiredAt(creditAccountDTO.getExpiredAt());
 
         if (creditAccountDTO.getPcid() != null) {
-            creditAccount.setPersonClient(personalClientRepository.findById(creditAccountDTO.getPcid()).get());
-            creditAccount.setCompanyClient(null);
+            creditAccount.setPersonalClient(personalClientRepository.findById(creditAccountDTO.getPcid()).get());
+            creditAccount.setPersonalClient(null);
         } else {
-            creditAccount.setPersonClient(null);
+            creditAccount.setPersonalClient(null);
             creditAccount.setCompanyClient(companyClientRepository.findById(creditAccountDTO.getCcid()).get());
         }
     }

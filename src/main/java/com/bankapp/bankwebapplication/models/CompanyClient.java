@@ -25,8 +25,8 @@ public class CompanyClient implements Client {
     public void setNip(String nip) { this.nip = nip; }
 
     private String companyAddress;
-    public String getCompanyAddress() { return companyAddress; }
-    public void setCompanyAddress(String companyAddress) { this.companyAddress = companyAddress; }
+    public String getAddress() { return companyAddress; }
+    public void setAddress(String companyAddress) { this.companyAddress = companyAddress; }
 
     private String companyPhone;
     public String getCompanyPhone() { return companyPhone; }

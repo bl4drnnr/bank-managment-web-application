@@ -53,6 +53,7 @@ public class AccountController {
             }
             modelAndView.setViewName("accounts");
             modelAndView.addObject("allCreditAccounts", allCreditAccounts);
+            return modelAndView;
         } else {
             List<DebitAccount> allDebitAccounts;
             if (typeOfClient == 1) {
@@ -61,10 +62,9 @@ public class AccountController {
                 allDebitAccounts = debitAccountRepository.findAllByccid(id);
             }
             modelAndView.setViewName("accounts");
-            modelAndView.addObject("allCreditAccounts", allDebitAccounts);
+            modelAndView.addObject("allDebitAccounts", allDebitAccounts);
+            return modelAndView;
         }
-
-        return modelAndView;
     }
 
 }
