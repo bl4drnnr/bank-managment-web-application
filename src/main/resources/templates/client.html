@@ -23,8 +23,10 @@
     <div>
         <h4>Here you can find all of clients:</h4>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon1">Find</button>
+            <form action="/get-client-by-id" method="get">
+                <input type="text" name="id" class="form-control" placeholder="Provide client's ID" aria-label="Provide client's ID" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find</button>
+            </form>
             <form action="/get-all-clients" method="get">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Show all</button>
             </form>
