@@ -40,8 +40,4 @@ public class DebitAccount implements Account {
     public Long getAmountOfMoney() { return amountOfMoney; }
     public void setAmountOfMoney(Long amountOfMoney) { this.amountOfMoney = amountOfMoney; }
 
-    @Override
-    public void getDetails() {
-
-    }
 }

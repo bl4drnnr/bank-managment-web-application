@@ -45,8 +45,4 @@ public class CreditAccount implements Account {
     public LocalDate getExpiredAt() { return expiredAt; }
     public void setExpiredAt(LocalDate expiredAt) { this.expiredAt = expiredAt; }
 
-    @Override
-    public void getDetails() {
-
-    }
 }

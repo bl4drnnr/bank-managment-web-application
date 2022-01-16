@@ -14,5 +14,4 @@ public interface Account {
     Long getAmountOfMoney();
     void setAmountOfMoney(Long amountOfMoney);
 
-    void getDetails();
 }

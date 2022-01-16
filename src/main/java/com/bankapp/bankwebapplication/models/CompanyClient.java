@@ -32,9 +32,4 @@ public class CompanyClient implements Client {
     public String getCompanyPhone() { return companyPhone; }
     public void setCompanyPhone(String companyPhone) { this.companyPhone = companyPhone; }
 
-
-    @Override
-    public void getDetails() {
-
-    }
 }

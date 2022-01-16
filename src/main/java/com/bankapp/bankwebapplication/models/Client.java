@@ -8,5 +8,4 @@ public interface Client {
     String getAddress();
     void setAddress(String address);
 
-    void getDetails();
 }

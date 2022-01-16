@@ -41,8 +41,4 @@ public class PersonClient implements Client {
     public String getHomePhone() { return homePhone; }
     public void setHomePhone(String homePhone) { this.homePhone = homePhone; }
 
-    @Override
-    public void getDetails() {
-
-    }
 }
