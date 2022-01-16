@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class AccountController {
@@ -74,6 +75,20 @@ public class AccountController {
             modelAndView.addObject("type", type);
         }
         return modelAndView;
+    }
+
+    @RequestMapping(path = "/delete-account-by-id")
+    ModelAndView deleteAccountById(HttpServletRequest request, ModelAndView modelAndView) {
+        String debitId = request.getParameter("debitId");
+        String creditId = request.getParameter("creditId");
+
+        if (!Objects.equals(debitId, null)) {
+            debitAccountRepository.deleteById((long) Integer.parseInt(debitId));
+        } else {
+            creditAccountRepository.deleteById((long) Integer.parseInt(creditId));
+        }
+
+        return getAllAccounts(modelAndView);
     }
 
 }

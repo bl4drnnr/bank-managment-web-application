@@ -21,6 +21,13 @@
         .picker {
             margin-right: 15px;
         }
+        .flex-client-box {
+            display: flex;
+            height: 30px;
+        }
+        span {
+            margin-right: 2px;
+        }
     </style>
 </head>
 <body>
@@ -68,45 +75,65 @@
     <div>
         <h4 th:text="${type}"></h4>
         <div th:each="debit: ${allDebitAccounts}">
-            <span><b>ID: </b></span>
-            <span class="fs-6" th:text="${debit.getId}"></span>
-            <span th:if="${debit.getPersonalClient != null}">
-                <span><b>PCID: </b></span>
-                <span class="fs-6" th:text="${debit.getPersonalClient.getId}"></span>
-                <span><b>First name and last name: </b></span>
-                <span class="fs-6" th:text="${debit.getPersonalClient.getFirstName}"></span>
-                <span class="fs-6" th:text="${debit.getPersonalClient.getLastName}"></span>
-            </span>
-            <span th:if="${debit.getCompanyClient != null}">
-                <span><b>CCID: </b></span>
-                <span class="fs-6" th:text="${debit.getCompanyClient.getId}"></span>
-                <span><b>Company name: </b></span>
-                <span class="fs-6" th:text="${debit.getCompanyClient.getCompanyName}"></span>
-            </span>
-            <span><b>Amount of money: </b></span>
-            <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
+            <div class="flex-client-box">
+                <span><b>ID: </b></span>
+                <span class="fs-6" th:text="${debit.getId}"></span>
+                <span th:if="${debit.getPersonalClient != null}">
+                    <span><b>PCID: </b></span>
+                    <span class="fs-6" th:text="${debit.getPersonalClient.getId}"></span>
+                    <span><b>First name and last name: </b></span>
+                    <span class="fs-6" th:text="${debit.getPersonalClient.getFirstName}"></span>
+                    <span class="fs-6" th:text="${debit.getPersonalClient.getLastName}"></span>
+                </span>
+                <span th:if="${debit.getCompanyClient != null}">
+                    <span><b>CCID: </b></span>
+                    <span class="fs-6" th:text="${debit.getCompanyClient.getId}"></span>
+                    <span><b>Company name: </b></span>
+                    <span class="fs-6" th:text="${debit.getCompanyClient.getCompanyName}"></span>
+                </span>
+                <span><b>Amount of money: </b></span>
+                <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
+                <form action="/delete-account-by-id" method="get">
+                    <span>
+                        <label style="display: none">
+                            <input th:value="${debit.getId}" type="text" name="debitId">
+                        </label>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </span>
+                </form>
+            </div>
             <hr>
         </div>
         <div th:each="credit: ${allCreditAccounts}">
-            <span><b>ID: </b></span>
-            <span class="fs-6" th:text="${credit.getId}"></span>
-            <span th:if="${credit.getPersonalClient != null}">
-                <span><b>PCID: </b></span>
-                <span class="fs-6" th:text="${credit.getPersonalClient.getId}"></span>
-                <span><b>First name and last name: </b></span>
-                <span class="fs-6" th:text="${credit.getPersonalClient.getFirstName}"></span>
-                <span class="fs-6" th:text="${credit.getPersonalClient.getLastName}"></span>
-            </span>
-            <span th:if="${credit.getCompanyClient != null}">
-                <span><b>CCID: </b></span>
-                <span class="fs-6" th:text="${credit.getCompanyClient.getId}"></span>
-                <span><b>Company name: </b></span>
-                <span class="fs-6" th:text="${credit.getCompanyClient.getCompanyName}"></span>
-            </span>
-            <span><b>Amount of money: </b></span>
-            <span class="fs-6" th:text="${credit.getAmountOfMoney}"></span>
-            <span><b>Expired at: </b></span>
-            <span class="fs-6" th:text="${credit.getExpiredAt}"></span>
+            <div class="flex-client-box">
+                <span><b>ID: </b></span>
+                <span class="fs-6" th:text="${credit.getId}"></span>
+                <span th:if="${credit.getPersonalClient != null}">
+                    <span><b>PCID: </b></span>
+                    <span class="fs-6" th:text="${credit.getPersonalClient.getId}"></span>
+                    <span><b>First name and last name: </b></span>
+                    <span class="fs-6" th:text="${credit.getPersonalClient.getFirstName}"></span>
+                    <span class="fs-6" th:text="${credit.getPersonalClient.getLastName}"></span>
+                </span>
+                <span th:if="${credit.getCompanyClient != null}">
+                    <span><b>CCID: </b></span>
+                    <span class="fs-6" th:text="${credit.getCompanyClient.getId}"></span>
+                    <span><b>Company name: </b></span>
+                    <span class="fs-6" th:text="${credit.getCompanyClient.getCompanyName}"></span>
+                </span>
+                <span><b>Amount of money: </b></span>
+                <span class="fs-6" th:text="${credit.getAmountOfMoney}"></span>
+                <span><b>Expired at: </b></span>
+                <span class="fs-6" th:text="${credit.getExpiredAt}"></span>
+                <form action="/delete-account-by-id" method="get">
+                    <span>
+                        <label style="display: none">
+                            <input th:value="${credit.getId}" type="text" name="creditId">
+                        </label>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </span>
+                </form>
+            </div>
             <hr>
         </div>
     </div>

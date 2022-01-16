@@ -7,7 +7,6 @@ import com.bankapp.bankwebapplication.repositories.PersonalClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -65,11 +64,13 @@ public class ClientController {
     ModelAndView deleteClientById(HttpServletRequest request, ModelAndView modelAndView) {
         String companyId = request.getParameter("companyId");
         String personId = request.getParameter("personId");
+
         if (!Objects.equals(companyId, null)) {
-            System.out.println("companyId: " + companyId);
+            companyClientRepository.deleteById((long) Integer.parseInt(companyId));
         } else {
-            System.out.println("personId: " + personId);
+            personalClientRepository.deleteById((long) Integer.parseInt(personId));
         }
+
         return getAllClients(modelAndView);
     }
 
