@@ -12,8 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -56,35 +58,51 @@ public class Bank {
         return "redirect:/";
     }
 
-    @PostMapping(path = "/person-debit")
-    String createPersonalDebitAccount(@ModelAttribute DebitAccountDTO debitAccountDTO) {
-        DebitAccount debitAccount = new DebitAccount();
-        DebitAccountService.map(debitAccountDTO, debitAccount);
-        debitAccountRepository.save(debitAccount);
+    @RequestMapping(path = "/person-debit")
+    String createPersonalDebitAccount(HttpServletRequest request, @ModelAttribute DebitAccountDTO debitAccountDTO) {
+        String pcid = request.getParameter("pcid");
+        List<PersonClient> pc = personalClientRepository.findAllById(Long.valueOf(pcid));
+        if (!pc.isEmpty()) {
+            DebitAccount debitAccount = new DebitAccount();
+            DebitAccountService.map(debitAccountDTO, debitAccount);
+            debitAccountRepository.save(debitAccount);
+        }
         return "redirect:/";
     }
 
-    @PostMapping(path = "/company-debit")
-    String createCompanyDebitAccount(@ModelAttribute DebitAccountDTO debitAccountDTO) {
-        DebitAccount debitAccount = new DebitAccount();
-        DebitAccountService.map(debitAccountDTO, debitAccount);
-        debitAccountRepository.save(debitAccount);
+    @RequestMapping(path = "/company-debit")
+    String createCompanyDebitAccount(HttpServletRequest request, @ModelAttribute DebitAccountDTO debitAccountDTO) {
+        String ccid = request.getParameter("ccid");
+        List<CompanyClient> cc = companyClientRepository.findAllById(Long.valueOf(ccid));
+        if (!cc.isEmpty()) {
+            DebitAccount debitAccount = new DebitAccount();
+            DebitAccountService.map(debitAccountDTO, debitAccount);
+            debitAccountRepository.save(debitAccount);
+        }
         return "redirect:/";
     }
 
-    @PostMapping(path = "/person-credit")
-    String createPersonalCreditAccount(@ModelAttribute CreditAccountDTO creditAccountDTO) {
-        CreditAccount creditAccount = new CreditAccount();
-        CreditAccountService.map(creditAccountDTO, creditAccount);
-        creditAccountRepository.save(creditAccount);
+    @RequestMapping(path = "/person-credit")
+    String createPersonalCreditAccount(HttpServletRequest request, @ModelAttribute CreditAccountDTO creditAccountDTO) {
+        String pcid = request.getParameter("pcid");
+        List<PersonClient> pc = personalClientRepository.findAllById(Long.valueOf(pcid));
+        if (!pc.isEmpty()) {
+            CreditAccount creditAccount = new CreditAccount();
+            CreditAccountService.map(creditAccountDTO, creditAccount);
+            creditAccountRepository.save(creditAccount);
+        }
         return "redirect:/";
     }
 
-    @PostMapping(path = "/company-credit")
-    String createCompanyCreditAccount(@ModelAttribute CreditAccountDTO creditAccountDTO) {
-        CreditAccount creditAccount = new CreditAccount();
-        CreditAccountService.map(creditAccountDTO, creditAccount);
-        creditAccountRepository.save(creditAccount);
+    @RequestMapping(path = "/company-credit")
+    String createCompanyCreditAccount(HttpServletRequest request, @ModelAttribute CreditAccountDTO creditAccountDTO) {
+        String ccid = request.getParameter("ccid");
+        List<CompanyClient> cc =companyClientRepository.findAllById(Long.valueOf(ccid));
+        if (!cc.isEmpty()) {
+            CreditAccount creditAccount = new CreditAccount();
+            CreditAccountService.map(creditAccountDTO, creditAccount);
+            creditAccountRepository.save(creditAccount);
+        }
         return "redirect:/";
     }
 
