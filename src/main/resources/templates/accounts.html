@@ -90,23 +90,25 @@
         <h4 th:text="${type}"></h4>
         <div th:each="debit: ${allDebitAccounts}">
             <div class="flex-client-box">
-                <span><b>ID: </b></span>
-                <span class="fs-6" th:text="${debit.getId}"></span>
-                <span th:if="${debit.getPersonalClient != null}">
-                    <span><b>PCID: </b></span>
-                    <span class="fs-6" th:text="${debit.getPersonalClient.getId}"></span>
-                    <span><b>First name and last name: </b></span>
-                    <span class="fs-6" th:text="${debit.getPersonalClient.getFirstName}"></span>
-                    <span class="fs-6" th:text="${debit.getPersonalClient.getLastName}"></span>
-                </span>
-                <span th:if="${debit.getCompanyClient != null}">
-                    <span><b>CCID: </b></span>
-                    <span class="fs-6" th:text="${debit.getCompanyClient.getId}"></span>
-                    <span><b>Company name: </b></span>
-                    <span class="fs-6" th:text="${debit.getCompanyClient.getCompanyName}"></span>
-                </span>
-                <span><b>Amount of money: </b></span>
-                <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
+                <div class="display-block">
+                    <span><b>ID: </b></span>
+                    <span class="fs-6" th:text="${debit.getId}"></span>
+                    <span th:if="${debit.getPersonalClient != null}">
+                        <span><b>PCID: </b></span>
+                        <span class="fs-6" th:text="${debit.getPersonalClient.getId}"></span>
+                        <span><b>First name and last name: </b></span>
+                        <span class="fs-6" th:text="${debit.getPersonalClient.getFirstName}"></span>
+                        <span class="fs-6" th:text="${debit.getPersonalClient.getLastName}"></span>
+                    </span>
+                    <span th:if="${debit.getCompanyClient != null}">
+                        <span><b>CCID: </b></span>
+                        <span class="fs-6" th:text="${debit.getCompanyClient.getId}"></span>
+                        <span><b>Company name: </b></span>
+                        <span class="fs-6" th:text="${debit.getCompanyClient.getCompanyName}"></span>
+                    </span>
+                    <span><b>Amount of money: </b></span>
+                    <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
+                </div>
                 <form action="/delete-account-by-id" method="get">
                     <span>
                         <label class="display-label">
@@ -114,6 +116,30 @@
                         </label>
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </span>
+                </form>
+                <span><button class="btn btn-primary" th:onclick='|showDebitChangeWindow("${debit.getId}")|'>Change</button></span>
+            </div>
+            <div th:id="${debit.getId}" class="change-window">
+                <form action="/change-debit-account" method="post">
+                    <label class="display-label">
+                        <input th:value="${debit.getId}" name="id" type="text">
+                    </label>
+                    <div class="input-group mb-3">
+                        <label>
+                            <input class="form-control" name="amountOfMoney" th:value="${debit.getAmountOfMoney}" type="text">
+                        </label>
+                    </div>
+                    <div th:if="${debit.getPersonalClient != null}" class="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <label class="display-label"><input class="form-control" name="pcid" th:value="${debit.getPersonalClient.getId}"/></label>
+                        </div>
+                    </div>
+                    <div th:if="${debit.getCompanyClient != null}" class="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <label class="display-label"><input class="form-control" name="ccid" th:value="${debit.getCompanyClient.getId}"/></label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
                 </form>
             </div>
             <hr>
@@ -160,23 +186,14 @@
                         <div class="input-group mb-3">
                             <label class="display-label"><input class="form-control" name="pcid" th:value="${credit.getPersonalClient.getId}"/></label>
                         </div>
-                        <div class="input-group mb-3">
-                            <label><input class="form-control" name="firstName" th:value="${credit.getPersonalClient.getFirstName}"/></label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <label><input class="form-control" name="lastName" th:value="${credit.getPersonalClient.getLastName}"/></label>
-                        </div>
                     </div>
                     <div th:if="${credit.getCompanyClient != null}" class="input-group mb-3">
                         <div class="input-group mb-3">
                             <label class="display-label"><input class="form-control" name="ccid" th:value="${credit.getCompanyClient.getId}"/></label>
                         </div>
-                        <div class="input-group mb-3">
-                            <label><input class="form-control" name="companyName" th:value="${credit.getCompanyClient.getCompanyName}"/></label>
-                        </div>
                     </div>
                     <div class="input-group mb-3">
-                        <label><input class="form-control" th:value="${credit.getAmountOfMoney}"/></label>
+                        <label><input class="form-control" name="amountOfMoney" th:value="${credit.getAmountOfMoney}"/></label>
                     </div>
                     <div class="input-group mb-3">
                         <label><input name="expiredAt" class="form-control" type="date" min="2018-01-01" max="2099-12-31" th:value="${credit.getExpiredAt}"/></label>

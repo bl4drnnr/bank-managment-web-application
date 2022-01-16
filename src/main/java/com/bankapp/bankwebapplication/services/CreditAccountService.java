@@ -24,7 +24,7 @@ public class CreditAccountService {
 
         if (creditAccountDTO.getPcid() != null) {
             creditAccount.setPersonalClient(personalClientRepository.findById(creditAccountDTO.getPcid()).get());
-            creditAccount.setPersonalClient(null);
+            creditAccount.setCompanyClient(null);
         } else {
             creditAccount.setPersonalClient(null);
             creditAccount.setCompanyClient(companyClientRepository.findById(creditAccountDTO.getCcid()).get());

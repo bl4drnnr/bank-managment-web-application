@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -93,6 +94,21 @@ public class AccountController {
 
     @RequestMapping(path = "/change-debit-account")
     ModelAndView changeDebitAccount(HttpServletRequest request, ModelAndView modelAndView) {
+        Long id = Long.valueOf(request.getParameter("id"));
+        String pcid = request.getParameter("pcid");
+        String ccid = request.getParameter("ccid");
+        Long amountOfMoney = Long.valueOf(request.getParameter("amountOfMoney"));
+
+        if (pcid != null) {
+            debitAccountRepository.updateDebitAccount(
+                    id, Long.valueOf(pcid), null, amountOfMoney
+            );
+        } else {
+            debitAccountRepository.updateDebitAccount(
+                    id, null, Long.valueOf(ccid), amountOfMoney
+            );
+        }
+
         return getAllAccounts(modelAndView);
     }
 
@@ -101,14 +117,17 @@ public class AccountController {
         Long id = Long.valueOf(request.getParameter("id"));
         String pcid = request.getParameter("pcid");
         String ccid = request.getParameter("ccid");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String companyName = request.getParameter("companyName");
+        Long amountOfMoney = Long.valueOf(request.getParameter("amountOfMoney"));
+        LocalDate expiredAt = LocalDate.parse(request.getParameter("expiredAt"));
 
         if (pcid != null) {
-            System.out.println("PCID: " + pcid);
+            creditAccountRepository.updateCreditAccount(
+                    id, Long.valueOf(pcid), null, amountOfMoney, expiredAt
+            );
         } else {
-            System.out.println("ccid: " + ccid);
+            creditAccountRepository.updateCreditAccount(
+                    id, null, Long.valueOf(ccid), amountOfMoney, expiredAt
+            );
         }
         return getAllAccounts(modelAndView);
     }

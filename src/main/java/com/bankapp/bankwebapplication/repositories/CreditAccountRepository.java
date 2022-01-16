@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +38,18 @@ public interface CreditAccountRepository extends CrudRepository<CreditAccount, L
     @Query(nativeQuery = true, value = "DELETE FROM credit_account WHERE pcid = :pcid")
     void deleteAllBypcid(
             @Param("pcid") Long pcid
+    );
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE credit_account" +
+            " SET amount_of_money = :amountOfMoney, expired_at = :expiredAt, pcid = :pcid, ccid = :ccid" +
+            " WHERE id = :id")
+    void updateCreditAccount(
+            @Param("id") Long id,
+            @Param("pcid") Long pcid,
+            @Param("ccid") Long ccid,
+            @Param("amountOfMoney") Long amountOfMoney,
+            @Param("expiredAt") LocalDate expiredAt
     );
 }

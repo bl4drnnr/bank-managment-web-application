@@ -38,4 +38,16 @@ public interface DebitAccountRepository extends CrudRepository<DebitAccount, Lon
     void deleteAllBypcid(
             @Param("pcid") Long pcid
     );
+
+    @Transactional
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE debit_account" +
+            " SET amount_of_money = :amountOfMoney, pcid = :pcid, ccid = :ccid" +
+            " WHERE id = :id")
+    void updateDebitAccount(
+            @Param("id") Long id,
+            @Param("pcid") Long pcid,
+            @Param("ccid") Long ccid,
+            @Param("amountOfMoney") Long amountOfMoney
+    );
 }
