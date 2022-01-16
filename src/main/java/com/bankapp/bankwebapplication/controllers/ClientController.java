@@ -111,6 +111,16 @@ public class ClientController {
 
     @RequestMapping(path = "/change-company-data")
     ModelAndView changeCompanyData(HttpServletRequest request, ModelAndView modelAndView) {
+        Long id = Long.valueOf(request.getParameter("id"));
+        String nip = request.getParameter("nip");
+        String companyName = request.getParameter("companyName");
+        String companyAddress = request.getParameter("companyAddress");
+        String companyPhone = request.getParameter("companyPhone");
+
+        companyClientRepository.updateCompanyData(
+                id, nip, companyName, companyAddress, companyPhone
+        );
+
         return getAllClients(modelAndView);
     }
 
