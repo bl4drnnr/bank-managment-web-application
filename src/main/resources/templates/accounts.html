@@ -31,6 +31,17 @@
         .display-label {
             display: none;
         }
+        .display-block {
+            display: block;
+        }
+        .change-window {
+            display: none;
+            width: 100%;
+            padding-top: 15px;
+        }
+        .padding-input {
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -109,25 +120,27 @@
         </div>
         <div th:each="credit: ${allCreditAccounts}">
             <div class="flex-client-box">
-                <span><b>ID: </b></span>
-                <span class="fs-6" th:text="${credit.getId}"></span>
-                <span th:if="${credit.getPersonalClient != null}">
-                    <span><b>PCID: </b></span>
-                    <span class="fs-6" th:text="${credit.getPersonalClient.getId}"></span>
-                    <span><b>First name and last name: </b></span>
-                    <span class="fs-6" th:text="${credit.getPersonalClient.getFirstName}"></span>
-                    <span class="fs-6" th:text="${credit.getPersonalClient.getLastName}"></span>
-                </span>
-                <span th:if="${credit.getCompanyClient != null}">
-                    <span><b>CCID: </b></span>
-                    <span class="fs-6" th:text="${credit.getCompanyClient.getId}"></span>
-                    <span><b>Company name: </b></span>
-                    <span class="fs-6" th:text="${credit.getCompanyClient.getCompanyName}"></span>
-                </span>
-                <span><b>Amount of money: </b></span>
-                <span class="fs-6" th:text="${credit.getAmountOfMoney}"></span>
-                <span><b>Expired at: </b></span>
-                <span class="fs-6" th:text="${credit.getExpiredAt}"></span>
+                <div class="display-block">
+                    <span><b>ID: </b></span>
+                    <span class="fs-6" th:text="${credit.getId}"></span>
+                    <span th:if="${credit.getPersonalClient != null}">
+                        <span><b>PCID: </b></span>
+                        <span class="fs-6" th:text="${credit.getPersonalClient.getId}"></span>
+                        <span><b>First name and last name: </b></span>
+                        <span class="fs-6" th:text="${credit.getPersonalClient.getFirstName}"></span>
+                        <span class="fs-6" th:text="${credit.getPersonalClient.getLastName}"></span>
+                    </span>
+                    <span th:if="${credit.getCompanyClient != null}">
+                        <span><b>CCID: </b></span>
+                        <span class="fs-6" th:text="${credit.getCompanyClient.getId}"></span>
+                        <span><b>Company name: </b></span>
+                        <span class="fs-6" th:text="${credit.getCompanyClient.getCompanyName}"></span>
+                    </span>
+                    <span><b>Amount of money: </b></span>
+                    <span class="fs-6" th:text="${credit.getAmountOfMoney}"></span>
+                    <span><b>Expired at: </b></span>
+                    <span class="fs-6" th:text="${credit.getExpiredAt}"></span>
+                </div>
                 <form action="/delete-account-by-id" method="get">
                     <span>
                         <label class="display-label">
@@ -136,10 +149,61 @@
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </span>
                 </form>
+                <span><button class="btn btn-primary" th:onclick='|showCreditChangeWindow("${credit.getId}")|'>Change</button></span>
+            </div>
+            <div th:id="${credit.getId} + '-credit'" class="change-window">
+                <form action="/change-credit-account" method="post">
+                    <label class="display-label">
+                        <input th:value="${credit.getId}" name="id" type="text">
+                    </label>
+                    <div th:if="${credit.getPersonalClient != null}" class="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <label class="display-label"><input class="form-control" name="pcid" th:value="${credit.getPersonalClient.getId}"/></label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label><input class="form-control" name="firstName" th:value="${credit.getPersonalClient.getFirstName}"/></label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label><input class="form-control" name="lastName" th:value="${credit.getPersonalClient.getLastName}"/></label>
+                        </div>
+                    </div>
+                    <div th:if="${credit.getCompanyClient != null}" class="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <label class="display-label"><input class="form-control" name="ccid" th:value="${credit.getCompanyClient.getId}"/></label>
+                        </div>
+                        <div class="input-group mb-3">
+                            <label><input class="form-control" name="companyName" th:value="${credit.getCompanyClient.getCompanyName}"/></label>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label><input class="form-control" th:value="${credit.getAmountOfMoney}"/></label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <label><input name="expiredAt" class="form-control" type="date" min="2018-01-01" max="2099-12-31" th:value="${credit.getExpiredAt}"/></label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
             </div>
             <hr>
         </div>
     </div>
 </div>
+<script>
+    function showDebitChangeWindow(id) {
+        if (document.getElementById(id).style.display !== "block") {
+            document.getElementById(id).style.display = "block";
+        } else {
+            document.getElementById(id).style.display = "none";
+        }
+    }
+    function showCreditChangeWindow(id) {
+        id = id + "-credit"
+        if (document.getElementById(id).style.display !== "block") {
+            document.getElementById(id).style.display = "block";
+        } else {
+            document.getElementById(id).style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>

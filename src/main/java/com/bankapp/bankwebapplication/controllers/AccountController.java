@@ -91,4 +91,25 @@ public class AccountController {
         return getAllAccounts(modelAndView);
     }
 
+    @RequestMapping(path = "/change-debit-account")
+    ModelAndView changeDebitAccount(HttpServletRequest request, ModelAndView modelAndView) {
+        return getAllAccounts(modelAndView);
+    }
+
+    @RequestMapping(path = "/change-credit-account")
+    ModelAndView changeCreditAccount(HttpServletRequest request, ModelAndView modelAndView) {
+        Long id = Long.valueOf(request.getParameter("id"));
+        String pcid = request.getParameter("pcid");
+        String ccid = request.getParameter("ccid");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String companyName = request.getParameter("companyName");
+
+        if (pcid != null) {
+            System.out.println("PCID: " + pcid);
+        } else {
+            System.out.println("ccid: " + ccid);
+        }
+        return getAllAccounts(modelAndView);
+    }
 }
