@@ -66,9 +66,19 @@ public class ClientController {
         String personId = request.getParameter("personId");
 
         if (!Objects.equals(companyId, null)) {
-            companyClientRepository.deleteById((long) Integer.parseInt(companyId));
+            try {
+                companyClientRepository.deleteById((long) Integer.parseInt(companyId));
+            } catch (Exception err) {
+                System.out.println(err);
+                System.out.println("Something went wrong!");
+            }
         } else {
-            personalClientRepository.deleteById((long) Integer.parseInt(personId));
+            try {
+                personalClientRepository.deleteById((long) Integer.parseInt(personId));
+            } catch (Exception err) {
+                System.out.println(err);
+                System.out.println("Something went wrong!");
+            }
         }
 
         return getAllClients(modelAndView);
