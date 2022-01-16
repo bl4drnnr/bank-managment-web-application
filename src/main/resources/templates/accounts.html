@@ -28,6 +28,9 @@
         span {
             margin-right: 2px;
         }
+        .display-label {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +98,7 @@
                 <span class="fs-6" th:text="${debit.getAmountOfMoney}"></span>
                 <form action="/delete-account-by-id" method="get">
                     <span>
-                        <label style="display: none">
+                        <label class="display-label">
                             <input th:value="${debit.getId}" type="text" name="debitId">
                         </label>
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -127,7 +130,7 @@
                 <span class="fs-6" th:text="${credit.getExpiredAt}"></span>
                 <form action="/delete-account-by-id" method="get">
                     <span>
-                        <label style="display: none">
+                        <label class="display-label">
                             <input th:value="${credit.getId}" type="text" name="creditId">
                         </label>
                         <button type="submit" class="btn btn-danger">Delete</button>

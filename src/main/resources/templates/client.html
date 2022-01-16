@@ -28,6 +28,12 @@
         span {
             margin-right: 5px;
         }
+        .display-label {
+            display: none;
+        }
+        .danger-deleting {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +72,7 @@
     </div>
     <div>
         <h4>List of clients:</h4>
+        <p class="danger-deleting">Be careful! By deleting user, user's accounts will also be deleted!</p>
         <div th:each="client: ${allPersonalClients}">
             <div class="flex-client-box">
                 <span><b>ID: </b></span>
@@ -87,7 +94,7 @@
                 </span>
                 <form action="/delete-client-by-id" method="get">
                     <span>
-                        <label style="display: none">
+                        <label class="display-label">
                             <input th:value="${client.getId}" type="text" name="personId">
                         </label>
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -110,7 +117,7 @@
                 <span class="fs-6" th:text="${company.getCompanyPhone}"></span>
                 <form action="/delete-client-by-id" method="get">
                     <span>
-                        <label style="display: none">
+                        <label class="display-label">
                             <input th:value="${company.getId}" type="text" name="companyId">
                         </label>
                         <button type="submit" class="btn btn-danger">Delete</button>
