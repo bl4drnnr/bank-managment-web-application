@@ -31,6 +31,9 @@
         .display-label {
             display: none;
         }
+        .display-block {
+            display: block;
+        }
         .danger-deleting {
             color: red;
         }
@@ -75,23 +78,25 @@
         <p class="danger-deleting">Be careful! By deleting user, user's accounts will also be deleted!</p>
         <div th:each="client: ${allPersonalClients}">
             <div class="flex-client-box">
-                <span><b>ID: </b></span>
-                <span id="clientId" class="fs-6" th:text="${client.getId}"></span>
-                <span><b>Name: </b></span>
-                <span class="fs-6" th:text="${client.firstName}"></span>
-                <span class="fs-6" th:text="${client.lastName}"></span>
-                <span><b>PESEL: </b></span>
-                <span class="fs-6" th:text="${client.getPesel}"></span>
-                <span><b>Address: </b></span>
-                <span class="fs-6" th:text="${client.getAddress}"></span>
-                <span th:if="${client.getWorkPhone != null and client.getWorkPhone != ''}">
-                    <span><b>Work phone: </b></span>
-                    <span class="fs-6" th:text="${client.getWorkPhone}"></span>
-                </span>
-                <span th:if="${client.getHomePhone != null and client.getHomePhone != ''}">
-                    <span><b>Home phone: </b></span>
-                    <span class="fs-6" th:text="${client.getHomePhone}"></span>
-                </span>
+                <div class="display-block">
+                    <span><b>ID: </b></span>
+                    <span id="clientId" class="fs-6" th:text="${client.getId}"></span>
+                    <span><b>Name: </b></span>
+                    <span class="fs-6" th:text="${client.firstName}"></span>
+                    <span class="fs-6" th:text="${client.lastName}"></span>
+                    <span><b>PESEL: </b></span>
+                    <span class="fs-6" th:text="${client.getPesel}"></span>
+                    <span><b>Address: </b></span>
+                    <span class="fs-6" th:text="${client.getAddress}"></span>
+                    <span th:if="${client.getWorkPhone != null and client.getWorkPhone != ''}">
+                        <span><b>Work phone: </b></span>
+                        <span class="fs-6" th:text="${client.getWorkPhone}"></span>
+                    </span>
+                    <span th:if="${client.getHomePhone != null and client.getHomePhone != ''}">
+                        <span><b>Home phone: </b></span>
+                        <span class="fs-6" th:text="${client.getHomePhone}"></span>
+                    </span>
+                </div>
                 <form action="/delete-client-by-id" method="get">
                     <span>
                         <label class="display-label">
@@ -101,25 +106,27 @@
                     </span>
                 </form>
                 <span><button class="btn btn-primary" th:onclick="|showClientChangeWindow('${client.getId}')|">Change</button></span>
-                <div th:id="${client.getId}" style="display: none;">
-                    <h1 th:text="${client.firstName}"></h1>
-                    <h1 th:text="${client.lastName}"></h1>
-                </div>
+            </div>
+            <div th:id="${client.getId}" style="display: none; width: 100%">
+                <h3 th:text="${client.firstName}"></h3>
+                <h3 th:text="${client.lastName}"></h3>
             </div>
             <hr>
         </div>
         <div th:each="company: ${allCompanies}">
             <div class="flex-client-box">
-                <span><b>ID: </b></span>
-                <span class="fs-6" th:text="${company.getId}"></span>
-                <span><b>NIP: </b></span>
-                <span class="fs-6" th:text="${company.getNip}"></span>
-                <span><b>Company name: </b></span>
-                <span class="fs-6" th:text="${company.getCompanyName}"></span>
-                <span><b>Company address: </b></span>
-                <span class="fs-6" th:text="${company.getAddress}"></span>
-                <span><b>Company phone: </b></span>
-                <span class="fs-6" th:text="${company.getCompanyPhone}"></span>
+                <div class="display-block">
+                    <span><b>ID: </b></span>
+                    <span class="fs-6" th:text="${company.getId}"></span>
+                    <span><b>NIP: </b></span>
+                    <span class="fs-6" th:text="${company.getNip}"></span>
+                    <span><b>Company name: </b></span>
+                    <span class="fs-6" th:text="${company.getCompanyName}"></span>
+                    <span><b>Company address: </b></span>
+                    <span class="fs-6" th:text="${company.getAddress}"></span>
+                    <span><b>Company phone: </b></span>
+                    <span class="fs-6" th:text="${company.getCompanyPhone}"></span>
+                </div>
                 <form action="/delete-client-by-id" method="get">
                     <span>
                         <label class="display-label">
@@ -129,9 +136,9 @@
                     </span>
                 </form>
                 <span><button class="btn btn-primary" th:onclick='|showCompanyChangeWindow("${company.getId}")|'>Change</button></span>
-                <div th:id="${company.getId} + '-company'" style="display: none;">
-                    <h1 th:text="${company.getCompanyName}"></h1>
-                </div>
+            </div>
+            <div th:id="${company.getId} + '-company'" style="display: none; width: 100%">
+                <h3 th:text="${company.getCompanyName}"></h3>
             </div>
             <hr>
         </div>
