@@ -92,4 +92,26 @@ public class ClientController {
         return getAllClients(modelAndView);
     }
 
+    @RequestMapping(path = "/change-person-data")
+    ModelAndView changePersonData(HttpServletRequest request, ModelAndView modelAndView) {
+        Long id = Long.valueOf(request.getParameter("id"));
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String pesel = request.getParameter("pesel");
+        String address = request.getParameter("address");
+        String workPhone = request.getParameter("workPhone");
+        String homePhone = request.getParameter("homePhone");
+
+        personalClientRepository.updateClientData(
+                id, firstName, lastName, pesel, address, workPhone, homePhone
+        );
+
+        return getAllClients(modelAndView);
+    }
+
+    @RequestMapping(path = "/change-company-data")
+    ModelAndView changeCompanyData(HttpServletRequest request, ModelAndView modelAndView) {
+        return getAllClients(modelAndView);
+    }
+
 }

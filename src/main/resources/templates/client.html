@@ -37,6 +37,14 @@
         .danger-deleting {
             color: red;
         }
+        .change-window {
+            display: none;
+            width: 100%;
+            padding-top: 15px;
+        }
+        .padding-input {
+            padding-top: 15px;
+        }
     </style>
 </head>
 <body>
@@ -82,8 +90,8 @@
                     <span><b>ID: </b></span>
                     <span id="clientId" class="fs-6" th:text="${client.getId}"></span>
                     <span><b>Name: </b></span>
-                    <span class="fs-6" th:text="${client.firstName}"></span>
-                    <span class="fs-6" th:text="${client.lastName}"></span>
+                    <span class="fs-6" th:text="${client.getFirstName}"></span>
+                    <span class="fs-6" th:text="${client.getLastName}"></span>
                     <span><b>PESEL: </b></span>
                     <span class="fs-6" th:text="${client.getPesel}"></span>
                     <span><b>Address: </b></span>
@@ -107,9 +115,28 @@
                 </form>
                 <span><button class="btn btn-primary" th:onclick="|showClientChangeWindow('${client.getId}')|">Change</button></span>
             </div>
-            <div th:id="${client.getId}" style="display: none; width: 100%">
-                <h3 th:text="${client.firstName}"></h3>
-                <h3 th:text="${client.lastName}"></h3>
+            <div th:id="${client.getId}" class="change-window">
+                <form action="/change-person-data" method="post">
+                    <label class="display-label">
+                        <input th:value="${client.getId}" name="id" type="text">
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text">First and last name</span>
+                        <input th:value="${client.getFirstName}" required name="firstName" type="text" aria-label="First name" class="form-control" placeholder="First name">
+                        <input th:value="${client.getLastName}" required name="lastName" type="text" aria-label="Last name" class="form-control" placeholder="Last name">
+                    </div>
+                    <div class="input-group mb-3 padding-input">
+                        <input th:value="${client.getPesel}" required name="pesel" type="text" class="form-control" placeholder="PESEL" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input th:value="${client.getAddress}" required name="address" type="text" class="form-control" placeholder="Address" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input th:value="${client.getWorkPhone}" name="workPhone" type="text" class="form-control margin-input" placeholder="Work phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        <input th:value="${client.getHomePhone}" name="homePhone" type="text" class="form-control" placeholder="Home phone (not required)" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
             </div>
             <hr>
         </div>
@@ -137,8 +164,25 @@
                 </form>
                 <span><button class="btn btn-primary" th:onclick='|showCompanyChangeWindow("${company.getId}")|'>Change</button></span>
             </div>
-            <div th:id="${company.getId} + '-company'" style="display: none; width: 100%">
-                <h3 th:text="${company.getCompanyName}"></h3>
+            <div th:id="${company.getId} + '-company'" class="change-window">
+                <form action="/change-company-data" method="post">
+                    <label class="display-label">
+                        <input th:value="${company.getId}" name="id" type="text">
+                    </label>
+                    <div class="input-group mb-3">
+                        <input th:value="${company.getNip}" required name="nip" type="text" class="form-control" placeholder="NIP" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input th:value="${company.getCompanyName}" required name="companyName" type="text" class="form-control" placeholder="Company name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input th:value="${company.getAddress}" required name="companyAddress" type="text" class="form-control" placeholder="Company address" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input th:value="${company.getCompanyPhone}" required name="companyPhone" type="text" class="form-control" placeholder="Company phone" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
             </div>
             <hr>
         </div>
@@ -146,10 +190,19 @@
 </div>
 <script>
     function showClientChangeWindow(id) {
-        document.getElementById(id).style.display = "block";
+        if (document.getElementById(id).style.display !== "block") {
+            document.getElementById(id).style.display = "block";
+        } else {
+            document.getElementById(id).style.display = "none";
+        }
     }
     function showCompanyChangeWindow(id) {
-        document.getElementById(id + "-company").style.display = "block";
+        id = id + "-company"
+        if (document.getElementById(id).style.display !== "block") {
+            document.getElementById(id).style.display = "block";
+        } else {
+            document.getElementById(id).style.display = "none";
+        }
     }
 </script>
 </body>
