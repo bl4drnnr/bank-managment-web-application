@@ -3,6 +3,8 @@ package com.bankapp.bankwebapplication.controllers;
 import com.bankapp.bankwebapplication.models.CompanyClient;
 import com.bankapp.bankwebapplication.models.PersonClient;
 import com.bankapp.bankwebapplication.repositories.CompanyClientRepository;
+import com.bankapp.bankwebapplication.repositories.CreditAccountRepository;
+import com.bankapp.bankwebapplication.repositories.DebitAccountRepository;
 import com.bankapp.bankwebapplication.repositories.PersonalClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,10 @@ public class ClientController {
     PersonalClientRepository personalClientRepository;
     @Autowired
     CompanyClientRepository companyClientRepository;
+    @Autowired
+    DebitAccountRepository debitAccountRepository;
+    @Autowired
+    CreditAccountRepository creditAccountRepository;
 
     @GetMapping(path = "/clients")
     ModelAndView getClientsPage(ModelAndView modelAndView) {
@@ -67,17 +73,19 @@ public class ClientController {
 
         if (!Objects.equals(companyId, null)) {
             try {
-                companyClientRepository.deleteById((long) Integer.parseInt(companyId));
+                companyClientRepository.deleteById(Long.parseLong(companyId));
             } catch (Exception err) {
-                System.out.println(err);
-                System.out.println("Something went wrong!");
+                creditAccountRepository.deleteAllByccid(Long.parseLong(companyId));
+                debitAccountRepository.deleteAllByccid(Long.parseLong(companyId));
+                companyClientRepository.deleteById(Long.parseLong(companyId));
             }
         } else {
             try {
-                personalClientRepository.deleteById((long) Integer.parseInt(personId));
+                personalClientRepository.deleteById(Long.parseLong(personId));
             } catch (Exception err) {
-                System.out.println(err);
-                System.out.println("Something went wrong!");
+                debitAccountRepository.deleteAllBypcid(Long.parseLong(personId));
+                creditAccountRepository.deleteAllBypcid(Long.parseLong(personId));
+                personalClientRepository.deleteById(Long.parseLong(personId));
             }
         }
 
