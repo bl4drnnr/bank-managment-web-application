@@ -50,4 +50,14 @@ public interface DebitAccountRepository extends CrudRepository<DebitAccount, Lon
             @Param("ccid") Long ccid,
             @Param("amountOfMoney") Long amountOfMoney
     );
+
+    @Query(nativeQuery = true, value = "SELECT * FROM debit_account WHERE" +
+            " amount_of_money = (SELECT max(amount_of_money) FROM debit_account WHERE" +
+            " pcid is not null)")
+    List<DebitAccount> findDebitPersonWithMaxAmounts();
+
+    @Query(nativeQuery = true, value = "SELECT * FROM debit_account WHERE" +
+            " amount_of_money = (SELECT max(amount_of_money) FROM debit_account WHERE" +
+            " ccid is not null)")
+    List<DebitAccount> findDebitCompanyWithMaxAmounts();
 }

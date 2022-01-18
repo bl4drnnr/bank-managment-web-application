@@ -52,4 +52,14 @@ public interface CreditAccountRepository extends CrudRepository<CreditAccount, L
             @Param("amountOfMoney") Long amountOfMoney,
             @Param("expiredAt") LocalDate expiredAt
     );
+
+    @Query(nativeQuery = true, value = "SELECT * FROM credit_account WHERE" +
+            " amount_of_money = (SELECT max(amount_of_money) FROM credit_account WHERE" +
+            " pcid is not null)")
+    List<CreditAccount> findCreditPersonWithMaxAmounts();
+
+    @Query(nativeQuery = true, value = "SELECT * FROM credit_account WHERE" +
+            " amount_of_money = (SELECT max(amount_of_money) FROM credit_account WHERE" +
+            " ccid is not null)")
+    List<CreditAccount> findCreditCompanyWithMaxAmounts();
 }

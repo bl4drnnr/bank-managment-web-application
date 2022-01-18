@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 @Controller
 public class AccountController {
@@ -130,5 +131,22 @@ public class AccountController {
             );
         }
         return getAllAccounts(modelAndView);
+    }
+
+    @GetMapping(path = "/get-max-amounts")
+    ModelAndView getMaxAmounts(ModelAndView modelAndView) {
+        List<DebitAccount> debitPersonMax = debitAccountRepository.findDebitPersonWithMaxAmounts();
+        List<DebitAccount> debitCompanyMax = debitAccountRepository.findDebitCompanyWithMaxAmounts();
+        List<CreditAccount> creditCompanyMax = creditAccountRepository.findCreditCompanyWithMaxAmounts();
+        List<CreditAccount> creditPersonMax = creditAccountRepository.findCreditPersonWithMaxAmounts();
+
+        List<DebitAccount> debitAccountList = Stream.concat(debitPersonMax.stream(), debitCompanyMax.stream()).toList();
+        List<CreditAccount> creditAccountList = Stream.concat(creditCompanyMax.stream(), creditPersonMax.stream()).toList();
+
+        modelAndView.addObject("allDebitAccounts", debitAccountList);
+        modelAndView.addObject("allCreditAccounts", creditAccountList);
+
+        modelAndView.setViewName("accounts");
+        return modelAndView;
     }
 }
