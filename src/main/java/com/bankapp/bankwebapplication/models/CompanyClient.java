@@ -10,17 +10,14 @@ public class CompanyClient implements Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
     private String companyName;
-
     public String getCompanyName() { return companyName; }
     public void setCompanyName(String companyName) { this.companyName = companyName; }
 
     private String nip;
-
     public String getNip() { return nip; }
     public void setNip(String nip) { this.nip = nip; }
 

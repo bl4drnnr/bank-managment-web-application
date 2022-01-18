@@ -14,7 +14,6 @@ public class CreditAccount implements Account {
     @ManyToOne
     @JoinColumn(name = "pcid")
     private PersonClient personClient;
-
     public PersonClient getPersonalClient() {
         if (personClient != null) {
             return personClient;
@@ -27,7 +26,6 @@ public class CreditAccount implements Account {
     @ManyToOne
     @JoinColumn(name = "ccid")
     private CompanyClient companyClient;
-
     public CompanyClient getCompanyClient() {
         if (companyClient != null) {
             return companyClient;
